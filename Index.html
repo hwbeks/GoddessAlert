@@ -5,6 +5,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GoddessAlert — Wees de man die zij verdient</title>
+  <meta name="color-scheme" content="dark" />
+  <style>
+    html { background: #0a0a0a; }
+  </style>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -312,9 +316,9 @@ section {
 .pricing-price { font-family: 'Playfair Display', serif; font-size: 48px; color: var(--gold); line-height: 1; margin-bottom: 4px; }
 .pricing-period { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
 .pricing-features { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
-.pricing-features li { font-size: 14px; color: var(--text); display: flex; align-items: center; gap: 10px; }
+.pricing-features li { font-size: 14px; color: var(--text) !important; display: flex; align-items: center; gap: 10px; }
 .pricing-features li::before { content: '✓'; color: var(--gold); font-weight: 700; }
-.pricing-features li.muted { color: var(--muted); }
+.pricing-features li.muted { color: var(--muted) !important; }
 .pricing-features li.muted::before { content: '–'; color: var(--border); }
 
 /* ── WAITLIST / POLL ── */
