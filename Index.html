@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GoddessAlert — Wees de man die zij verdient</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+```
+:root {
+  --bg:       #0a0a0a;
+  --card:     #131313;
+  --border:   #252525;
+  --gold:     #d4a853;
+  --gold-soft:#d4a85322;
+  --gold-mid: #d4a85366;
+  --red:      #c0392b;
+  --green:    #27ae60;
+  --text:     #ede8de;
+  --muted:    #7a7060;
+  --white:    #ffffff;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ── NOISE TEXTURE OVERLAY ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  padding: 20px 40px;
+  display: flex; align-items: center; justify-content: space-between;
+  z-index: 100;
+  background: linear-gradient(to bottom, #0a0a0aee, transparent);
+}
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 24px;
+  color: var(--gold);
+  letter-spacing: 1px;
+}
+.nav-cta {
+  background: var(--gold);
+  color: #0a0a0a;
+  border: none;
+  border-radius: 30px;
+  padding: 10px 24px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.nav-cta:hover { opacity: 0.85; }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 120px 24px 80px;
+  position: relative;
+}
+
+.hero-glow {
+  position: absolute;
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #d4a85318 0%, transparent 70%);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.hero-tag {
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.2s;
+}
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(42px, 8vw, 84px);
+  line-height: 1.1;
+  color: var(--text);
+  margin-bottom: 12px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.4s;
+}
+
+.hero-title em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.hero-sub {
+  font-size: clamp(16px, 2.5vw, 20px);
+  color: var(--muted);
+  max-width: 560px;
+  margin: 0 auto 48px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.6s;
+}
+
+.hero-actions {
+  display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.8s;
+}
+
+.btn-primary {
+  background: var(--gold);
+  color: #0a0a0a;
+  border: none; border-radius: 40px;
+  padding: 16px 36px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500; font-size: 16px;
+  cursor: pointer; text-decoration: none;
+  transition: transform 0.2s, opacity 0.2s;
+  display: inline-block;
+}
+.btn-primary:hover { transform: translateY(-2px); opacity: 0.9; }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 40px;
+  padding: 16px 36px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  cursor: pointer; text-decoration: none;
+  transition: border-color 0.2s, color 0.2s;
+  display: inline-block;
+}
+.btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ── SECTION BASE ── */
+section {
+  position: relative;
+  z-index: 1;
+  padding: 100px 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.section-tag {
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 5vw, 48px);
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.section-title em { font-style: italic; color: var(--gold); }
+
+.section-sub {
+  font-size: 17px;
+  color: var(--muted);
+  max-width: 540px;
+  margin-bottom: 48px;
+}
+
+/* ── PROBLEM SECTION ── */
+.problem-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.problem-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 28px;
+}
+
+.problem-icon { font-size: 32px; margin-bottom: 14px; }
+.problem-title { font-size: 17px; font-weight: 500; margin-bottom: 8px; color: var(--text); }
+.problem-text { font-size: 14px; color: var(--muted); line-height: 1.7; }
+
+/* ── HOW IT WORKS ── */
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+}
+
+.steps::before {
+  content: '';
+  position: absolute;
+  left: 27px; top: 0; bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+}
+
+.step {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--border);
+}
+.step:last-child { border-bottom: none; }
+
+.step-num {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: var(--gold-soft);
+  border: 1px solid var(--gold-mid);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+
+.step-content { padding-top: 8px; }
+.step-title { font-size: 18px; font-weight: 500; margin-bottom: 6px; }
+.step-text { font-size: 15px; color: var(--muted); }
+
+/* ── FEATURES ── */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.feature-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  transition: border-color 0.2s;
+}
+.feature-card:hover { border-color: var(--gold-mid); }
+.feature-emoji { font-size: 28px; margin-bottom: 12px; }
+.feature-title { font-size: 15px; font-weight: 500; margin-bottom: 6px; }
+.feature-text { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+/* ── PRICING ── */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  max-width: 640px;
+}
+
+.pricing-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 32px;
+}
+
+.pricing-card.featured {
+  border-color: var(--gold);
+  background: linear-gradient(135deg, #1a1400, #131313);
+  position: relative;
+}
+
+.pricing-badge {
+  position: absolute;
+  top: -12px; left: 50%; transform: translateX(-50%);
+  background: var(--gold);
+  color: #0a0a0a;
+  font-size: 11px; font-weight: 500;
+  padding: 4px 16px; border-radius: 20px;
+  letter-spacing: 1px; text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.pricing-plan { font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
+.pricing-price { font-family: 'Playfair Display', serif; font-size: 48px; color: var(--gold); line-height: 1; margin-bottom: 4px; }
+.pricing-period { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
+.pricing-features { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+.pricing-features li { font-size: 14px; color: var(--text); display: flex; align-items: center; gap: 10px; }
+.pricing-features li::before { content: '✓'; color: var(--gold); font-weight: 700; }
+.pricing-features li.muted { color: var(--muted); }
+.pricing-features li.muted::before { content: '–'; color: var(--border); }
+
+/* ── WAITLIST / POLL ── */
+.waitlist-wrap {
+  background: linear-gradient(135deg, #111000, #0a0a0a);
+  border: 1px solid var(--gold-mid);
+  border-radius: 24px;
+  padding: 56px 40px;
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.poll-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 24px 0 32px;
+  text-align: left;
+}
+
+.poll-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 18px;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  color: var(--text);
+  text-align: left;
+  width: 100%;
+}
+
+.poll-option:hover { border-color: var(--gold-mid); }
+.poll-option.selected { border-color: var(--gold); background: var(--gold-soft); }
+
+.poll-dot {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  flex-shrink: 0;
+  transition: border-color 0.2s, background 0.2s;
+}
+.poll-option.selected .poll-dot {
+  border-color: var(--gold);
+  background: var(--gold);
+}
+
+.waitlist-input-row {
+  display: flex; gap: 10px; flex-wrap: wrap;
+}
+
+.waitlist-input {
+  flex: 1; min-width: 200px;
+  background: #0a0a0a;
+  border: 1px solid var(--border);
+  border-radius: 40px;
+  padding: 14px 22px;
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.waitlist-input:focus { border-color: var(--gold-mid); }
+.waitlist-input::placeholder { color: var(--muted); }
+
+.waitlist-submit {
+  background: var(--gold);
+  color: #0a0a0a;
+  border: none;
+  border-radius: 40px;
+  padding: 14px 28px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s;
+  white-space: nowrap;
+}
+.waitlist-submit:hover { opacity: 0.88; transform: translateY(-1px); }
+
+.waitlist-privacy {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 14px;
+}
+.waitlist-privacy a { color: var(--gold); text-decoration: none; }
+
+.success-state {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.success-state.visible { display: flex; }
+
+/* ── QUOTE ── */
+.quote-section {
+  text-align: center;
+  padding: 80px 24px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.quote-text {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(20px, 3.5vw, 32px);
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--text);
+  margin-bottom: 20px;
+}
+
+.quote-text em { color: var(--gold); }
+
+.quote-attr {
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ── ENGLISH SECTION ── */
+.lang-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 0;
+}
+
+.en-section {
+  background: #080808;
+  padding: 80px 24px;
+  text-align: center;
+}
+
+.en-inner {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.en-tag {
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 32px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-logo {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  color: var(--gold);
+  font-size: 20px;
+}
+
+.footer-links {
+  display: flex; gap: 24px; flex-wrap: wrap;
+}
+
+.footer-links a {
+  font-size: 13px;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--gold); }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 600px) {
+  nav { padding: 16px 20px; }
+  .waitlist-wrap { padding: 36px 20px; }
+  footer { flex-direction: column; align-items: flex-start; }
+  .steps::before { display: none; }
+}
+```
+
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+
+<nav>
+  <div class="nav-logo">GoddessAlert</div>
+  <a href="#waitlist" class="nav-cta">Aanmelden</a>
+</nav>
+
+<!-- HERO -->
+
+<div class="hero">
+  <div class="hero-glow"></div>
+  <p class="hero-tag">Voor mannen die écht aanwezig willen zijn</p>
+  <h1 class="hero-title">Wees de man<br /><em>die zij verdient</em></h1>
+  <p class="hero-sub">
+    Je bent niet onoplettend. Je vergeet het gewoon soms. GoddessAlert helpt je de kleine dingen te onthouden — vóórdat het te laat is.
+  </p>
+  <div class="hero-actions">
+    <a href="#waitlist" class="btn-primary">Zet me op de wachtlijst</a>
+    <a href="#hoe-het-werkt" class="btn-ghost">Hoe werkt het?</a>
+  </div>
+</div>
+
+<!-- QUOTE -->
+
+<div class="quote-section">
+  <p class="quote-text">
+    "Ze wil geen perfecte man.<br />Ze wil een man die <em>probeert</em>."
+  </p>
+  <p class="quote-attr">— Het idee achter GoddessAlert</p>
+</div>
+
+<!-- PROBLEM -->
+
+<section>
+  <p class="section-tag">Het probleem</p>
+  <h2 class="section-title">Je bedoelt het goed.<br /><em>Maar het leven is druk.</em></h2>
+  <p class="section-sub">Vergeten is menselijk. Maar voor haar voelt het anders.</p>
+  <div class="problem-grid">
+    <div class="problem-card">
+      <div class="problem-icon">🎂</div>
+      <div class="problem-title">Haar verjaardag</div>
+      <div class="problem-text">Je wist het. Echt. Maar ineens was het zover en had je niets geregeld. Weer die blik.</div>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon">💍</div>
+      <div class="problem-title">Jullie jubileum</div>
+      <div class="problem-text">Dat ene speciale moment. Zij herinnert het zich tot op de dag nauwkeurig. Jij... minder.</div>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon">🗑️</div>
+      <div class="problem-title">De kleine dingen</div>
+      <div class="problem-text">Het vuilnis. Je rommel. Die kapotte kraan. Klein voor jou, groot voor haar. Elke keer weer.</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+
+<section id="hoe-het-werkt">
+  <p class="section-tag">Hoe het werkt</p>
+  <h2 class="section-title"><em>Simpel.</em> Effectief.<br />Zij weet van niets.</h2>
+  <p class="section-sub">GoddessAlert werkt stil op de achtergrond — als een goede vriend die je op tijd een seintje geeft.</p>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <div class="step-title">Voer haar gegevens in</div>
+        <div class="step-text">Haar naam, verjaardag, jullie jubileumdag. Duurt 60 seconden. Zij weet er nooit van.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <div class="step-title">Ontvang vroege waarschuwingen</div>
+        <div class="step-text">GoddessAlert stuurt je een herinnering ruim vóór belangrijke momenten — zodat jij tijd hebt om iets moois te regelen.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <div class="step-title">Doe dagelijkse kleine dingen</div>
+        <div class="step-text">Elke dag een concrete tip. Klein, haalbaar en effectief. Markeer als gedaan, bouw je score op.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <div class="step-title">Zie jullie relatie groeien</div>
+        <div class="step-text">Je relatiegezondheidscore laat zien hoe aandachtig je bent. Niet voor haar — voor jezelf.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+
+<section>
+  <p class="section-tag">Wat je krijgt</p>
+  <h2 class="section-title">Alles wat je nodig hebt<br />om <em>aanwezig</em> te zijn.</h2>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-emoji">⏰</div>
+      <div class="feature-title">Slimme herinneringen</div>
+      <div class="feature-text">Verjaardagen, jubilea en eigen momenten — altijd op tijd gewaarschuwd.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-emoji">✦</div>
+      <div class="feature-title">Dagelijkse aandachtstip</div>
+      <div class="feature-text">Eén concrete tip per dag. Klein, haalbaar, effectief. Jij beoordeelt of hij nuttig was.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-emoji">💪</div>
+      <div class="feature-title">Relatiegezondheidscore</div>
+      <div class="feature-text">Jouw persoonlijke score op basis van wat je doet. Niet wat je belooft.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-emoji">📋</div>
+      <div class="feature-title">Persoonlijke to-do's</div>
+      <div class="feature-text">Vuilnis, klusjes, beloftes — stel datum en tijd in, nooit meer vergeten.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-emoji">📧</div>
+      <div class="feature-title">E-mail notificaties</div>
+      <div class="feature-text">Herinneringen direct in je inbox. Geen app open hoeven te houden.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-emoji">🔒</div>
+      <div class="feature-title">Volledig privé</div>
+      <div class="feature-text">Alleen voor jou. Zij ziet niets, weet niets. Jij blijft de held.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+
+<section>
+  <p class="section-tag">Prijzen</p>
+  <h2 class="section-title">Begin gratis.<br /><em>Blijf groeien.</em></h2>
+  <p class="section-sub">7 dagen alles gratis proberen. Daarna kies je zelf.</p>
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <div class="pricing-plan">Gratis</div>
+      <div class="pricing-price">€0</div>
+      <div class="pricing-period">voor altijd</div>
+      <ul class="pricing-features">
+        <li>Tot 3 herinneringen</li>
+        <li>Wekelijkse check-in</li>
+        <li class="muted">Dagelijkse tips</li>
+        <li class="muted">Relatiescore</li>
+        <li class="muted">Onbeperkte to-do's</li>
+      </ul>
+      <a href="#waitlist" class="btn-ghost" style="display:block; text-align:center;">Begin gratis</a>
+    </div>
+    <div class="pricing-card featured">
+      <div class="pricing-badge">Meest gekozen</div>
+      <div class="pricing-plan">Premium</div>
+      <div class="pricing-price">€4,99</div>
+      <div class="pricing-period">per maand · of €29,99/jaar (bespaar 50%)</div>
+      <ul class="pricing-features">
+        <li>Onbeperkte herinneringen</li>
+        <li>Dagelijkse aandachtstips</li>
+        <li>Relatiegezondheidscore</li>
+        <li>Onbeperkte to-do's</li>
+        <li>7 dagen gratis proberen</li>
+      </ul>
+      <a href="#waitlist" class="btn-primary" style="display:block; text-align:center;">Start gratis proefperiode</a>
+    </div>
+  </div>
+</section>
+
+<!-- ENGLISH SECTION -->
+
+<hr class="lang-divider" />
+<div class="en-section">
+  <div class="en-inner">
+    <p class="en-tag">Also in English</p>
+    <h2 style="font-family:'Playfair Display',serif; font-size:clamp(24px,4vw,40px); margin-bottom:16px; line-height:1.2;">
+      Not Dutch? No problem.
+    </h2>
+    <p style="font-size:16px; color:var(--muted); margin-bottom:32px; line-height:1.7;">
+      GoddessAlert is built for any man who wants to be more attentive to his partner —
+      regardless of language. Sign up below and tell us your preference.
+      The app will be available in both Dutch and English at launch.
+    </p>
+    <a href="#waitlist" class="btn-primary">Join the waitlist</a>
+  </div>
+</div>
+
+<!-- WAITLIST + POLL -->
+
+<section id="waitlist" style="padding: 100px 24px;">
+  <div class="waitlist-wrap">
+    <p style="font-size:11px; letter-spacing:4px; text-transform:uppercase; color:var(--gold); margin-bottom:16px;">Wachtlijst</p>
+    <h2 style="font-family:'Playfair Display',serif; font-size:clamp(24px,4vw,36px); margin-bottom:12px; line-height:1.2;">
+      Wees er als eerste bij
+    </h2>
+    <p style="font-size:15px; color:var(--muted); margin-bottom:32px;">
+      GoddessAlert is nog in ontwikkeling. Meld je aan en ontvang als eerste toegang — plus een exclusieve early-bird korting.
+    </p>
+    <!-- Tally embed -->
+    <iframe
+      data-tally-src="https://tally.so/embed/EkDgXA?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+      loading="lazy"
+      width="100%"
+      height="400"
+      frameborder="0"
+      marginheight="0"
+      marginwidth="0"
+      title="GoddessAlert Wachtlijst"
+      style="border:none; width:100%; color-scheme: dark;"
+    ></iframe>
+  </div>
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+  <div class="footer-logo">GoddessAlert</div>
+  <div class="footer-links">
+    <a href="#">Algemene voorwaarden</a>
+    <a href="#">Privacyverklaring</a>
+    <a href="#">Contact</a>
+  </div>
+  <div style="font-size:12px; color:var(--muted);">© 2026 GoddessAlert. Alle rechten voorbehouden.</div>
+</footer>
+
+<script>
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+</script>
+
+<script async src="https://tally.so/widgets/embed.js"></script>
+
+</body>
+</html>
