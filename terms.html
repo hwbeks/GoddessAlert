@@ -1,18 +1,539 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Algemene Voorwaarden — GoddessAlert</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
-    body { font-family: Georgia, serif; max-width: 720px; margin: 0 auto; padding: 40px 24px; background: #0a0a0a; color: #ede8de; line-height: 1.8; }
-    h1, h2 { color: #d4a853; }
-    a { color: #d4a853; }
+    :root {
+      --gold: #C9A84C;
+      --gold-light: #E8D5A3;
+      --gold-dark: #8B6914;
+      --ink: #1A1612;
+      --parchment: #FAF7F2;
+      --warm-grey: #6B6560;
+      --rule: #E2D9CC;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--parchment);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    header {
+      background: var(--ink);
+      padding: 28px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 300;
+      color: var(--gold);
+      letter-spacing: 0.12em;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    .logo span {
+      color: #fff;
+      opacity: 0.5;
+      font-size: 13px;
+      font-family: 'DM Sans', sans-serif;
+      letter-spacing: 0.05em;
+      margin-left: 16px;
+      font-weight: 300;
+    }
+
+    .hero {
+      background: var(--ink);
+      padding: 60px 40px 50px;
+      text-align: center;
+      border-bottom: 1px solid rgba(201,168,76,0.25);
+    }
+
+    .hero-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 5vw, 52px);
+      font-weight: 300;
+      color: #fff;
+      letter-spacing: 0.02em;
+      margin-bottom: 16px;
+    }
+
+    .hero-meta {
+      font-size: 13px;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.05em;
+    }
+
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 64px 40px 100px;
+    }
+
+    .toc {
+      background: #fff;
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--gold);
+      padding: 28px 32px;
+      margin-bottom: 56px;
+      border-radius: 0 4px 4px 0;
+    }
+
+    .toc-title {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      margin-bottom: 16px;
+    }
+
+    .toc ol {
+      list-style: none;
+      counter-reset: toc;
+      columns: 2;
+      gap: 0 32px;
+    }
+
+    @media (max-width: 560px) { .toc ol { columns: 1; } }
+
+    .toc li {
+      counter-increment: toc;
+      margin-bottom: 8px;
+      font-size: 13.5px;
+    }
+
+    .toc li a {
+      color: var(--warm-grey);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .toc li a:hover { color: var(--gold-dark); }
+
+    section {
+      margin-bottom: 52px;
+      padding-top: 8px;
+    }
+
+    section + section {
+      border-top: 1px solid var(--rule);
+      padding-top: 52px;
+    }
+
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 20px;
+      letter-spacing: 0.01em;
+    }
+
+    h2 .section-num {
+      color: var(--gold);
+      font-style: italic;
+      margin-right: 10px;
+    }
+
+    h3 {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      margin: 28px 0 12px;
+    }
+
+    p { margin-bottom: 16px; color: #3A3530; }
+    p:last-child { margin-bottom: 0; }
+
+    strong { font-weight: 500; color: var(--ink); }
+
+    ul, ol {
+      margin: 12px 0 16px 20px;
+      color: #3A3530;
+    }
+
+    li { margin-bottom: 6px; }
+
+    .highlight {
+      background: #fff;
+      border-left: 3px solid var(--gold);
+      padding: 18px 22px;
+      margin: 20px 0;
+      font-size: 14.5px;
+      color: var(--warm-grey);
+      border-radius: 0 4px 4px 0;
+    }
+
+    .highlight.warning {
+      border-left-color: #C0392B;
+      background: #FFF8F8;
+    }
+
+    .highlight.warning strong { color: #C0392B; }
+
+    .price-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .price-card {
+      background: #fff;
+      border: 1px solid var(--rule);
+      padding: 22px 24px;
+      border-radius: 4px;
+    }
+
+    .price-card .plan-name {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      margin-bottom: 8px;
+    }
+
+    .price-card .price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .price-card .price-note {
+      font-size: 12px;
+      color: var(--warm-grey);
+    }
+
+    .table-wrap { overflow-x: auto; margin: 20px 0; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    thead th {
+      background: var(--ink);
+      color: var(--gold-light);
+      font-weight: 400;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 12px 16px;
+      text-align: left;
+    }
+
+    tbody tr { border-bottom: 1px solid var(--rule); }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:nth-child(even) { background: rgba(255,255,255,0.6); }
+
+    td {
+      padding: 12px 16px;
+      color: #3A3530;
+      vertical-align: top;
+    }
+
+    td:first-child { font-weight: 400; color: var(--ink); }
+
+    .contact-block {
+      background: var(--ink);
+      color: #fff;
+      padding: 36px 40px;
+      border-radius: 4px;
+      margin-top: 40px;
+    }
+
+    .contact-block h3 {
+      color: var(--gold);
+      margin-top: 0;
+      margin-bottom: 16px;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+    }
+
+    .contact-block p { color: rgba(255,255,255,0.7); margin-bottom: 8px; }
+    .contact-block a { color: var(--gold-light); text-decoration: none; }
+    .contact-block a:hover { color: var(--gold); }
+
+    footer {
+      background: var(--ink);
+      padding: 28px 40px;
+      text-align: center;
+      font-size: 12px;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 0.06em;
+    }
+
+    footer a { color: var(--gold); text-decoration: none; }
+
+    @media (max-width: 600px) {
+      header, .hero { padding-left: 24px; padding-right: 24px; }
+      .container { padding: 48px 24px 80px; }
+      .contact-block { padding: 28px 24px; }
+    }
   </style>
 </head>
 <body>
+
+<header>
+  <a href="https://goddessalert.com" class="logo">GoddessAlert <span>goddessalert.com</span></a>
+</header>
+
+<div class="hero">
+  <div class="hero-label">Juridische informatie</div>
   <h1>Algemene Voorwaarden</h1>
-  <p>Volgt binnenkort. Neem contact op via <a href="mailto:hello@goddessalert.com">hello@goddessalert.com</a></p>
-  <p><a href="https://goddessalert.com">← Terug naar GoddessAlert</a></p>
+  <div class="hero-meta">Versie 1.0 &nbsp;·&nbsp; Laatste update: april 2026 &nbsp;·&nbsp; KvK 54496462</div>
+</div>
+
+<div class="container">
+
+  <nav class="toc">
+    <div class="toc-title">Inhoudsopgave</div>
+    <ol>
+      <li><a href="#s1">Over GoddessAlert</a></li>
+      <li><a href="#s2">Toegang en gebruik</a></li>
+      <li><a href="#s3">Account</a></li>
+      <li><a href="#s4">Proefperiode</a></li>
+      <li><a href="#s5">Abonnement en betaling</a></li>
+      <li><a href="#s6">Annulering en restitutie</a></li>
+      <li><a href="#s7">Jouw verantwoordelijkheden</a></li>
+      <li><a href="#s8">AI-tips en content</a></li>
+      <li><a href="#s9">Intellectueel eigendom</a></li>
+      <li><a href="#s10">Beschikbaarheid</a></li>
+      <li><a href="#s11">Aansprakelijkheid</a></li>
+      <li><a href="#s12">Wijzigingen</a></li>
+      <li><a href="#s13">Toepasselijk recht</a></li>
+      <li><a href="#s14">Contact</a></li>
+    </ol>
+  </nav>
+
+  <!-- 1 -->
+  <section id="s1">
+    <h2><span class="section-num">1.</span> Over GoddessAlert</h2>
+    <p>GoddessAlert is een digitaal platform dat mannen helpt attenter te zijn voor hun partner en de vrouwen in hun leven. GoddessAlert is een handelsnaam van een eenmanszaak geregistreerd bij de Kamer van Koophandel in Nederland onder nummer <strong>54496462</strong>.</p>
+    <p>Door gebruik te maken van GoddessAlert ga je akkoord met deze Algemene Voorwaarden. Lees ze zorgvuldig door voordat je de dienst gebruikt.</p>
+    <div class="highlight">
+      Door je te registreren of de app te gebruiken, verklaar je dat je deze voorwaarden hebt gelezen, begrepen en geaccepteerd.
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section id="s2">
+    <h2><span class="section-num">2.</span> Toegang en gebruik</h2>
+    <p>GoddessAlert is uitsluitend bestemd voor:</p>
+    <ul>
+      <li>Personen van <strong>18 jaar en ouder</strong></li>
+      <li><strong>Persoonlijk gebruik</strong> door de geregistreerde gebruiker</li>
+      <li>Gebruik conform het doel van de dienst: het verbeteren van aandacht en attentiviteit in persoonlijke relaties</li>
+    </ul>
+    <div class="highlight warning">
+      <strong>Niet toegestaan:</strong> GoddessAlert mag niet worden gebruikt voor surveillancedoeleinden, manipulatie, of enige andere toepassing die de privacy of het welzijn van anderen schaadt. De app is privé en niet bestemd voor gebruik door of met derden, inclusief je partner.
+    </div>
+    <p>GoddessAlert behoudt zich het recht voor accounts te beëindigen bij misbruik of gebruik in strijd met deze voorwaarden.</p>
+  </section>
+
+  <!-- 3 -->
+  <section id="s3">
+    <h2><span class="section-num">3.</span> Account</h2>
+    <p>Je maakt een account aan met je e-mailadres. Toegang verloopt via een magic link — er wordt geen wachtwoord opgeslagen. Je bent verantwoordelijk voor de vertrouwelijkheid van je inloggegevens en voor alle activiteiten die via jouw account plaatsvinden.</p>
+    <p>Je kunt je account op elk moment verwijderen via de instellingen van de app. Bij verwijdering worden al je gegevens permanent gewist conform ons <a href="/privacy.html">Privacy Statement</a>.</p>
+  </section>
+
+  <!-- 4 -->
+  <section id="s4">
+    <h2><span class="section-num">4.</span> Proefperiode</h2>
+    <p>Nieuwe gebruikers krijgen <strong>7 dagen gratis toegang</strong> tot alle Premium functies. Tijdens de proefperiode is geen creditcard vereist.</p>
+    <ul>
+      <li>Na 7 dagen vervalt de toegang tot Premium functies automatisch</li>
+      <li>Je account blijft actief — je kiest zelf of je wilt upgraden</li>
+      <li>Er wordt <strong>niet automatisch</strong> een betaald abonnement gestart</li>
+      <li>Upgraden kan op elk moment via de app</li>
+    </ul>
+    <div class="highlight">
+      GoddessAlert vraagt nooit automatisch betaling na een proefperiode zonder jouw expliciete actie.
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section id="s5">
+    <h2><span class="section-num">5.</span> Abonnement en betaling</h2>
+
+    <h3>Beschikbare abonnementen</h3>
+    <div class="price-grid">
+      <div class="price-card">
+        <div class="plan-name">Maandelijks</div>
+        <div class="price">€4,99</div>
+        <div class="price-note">per maand · maandelijks opzegbaar</div>
+      </div>
+      <div class="price-card">
+        <div class="plan-name">Jaarlijks</div>
+        <div class="price">€29,99</div>
+        <div class="price-note">per jaar · beste waarde</div>
+      </div>
+    </div>
+
+    <h3>Betalingsverwerking</h3>
+    <p>Betalingen worden verwerkt via <strong>Stripe</strong>. GoddessAlert slaat geen betaalgegevens op. Door een abonnement af te sluiten ga je akkoord met de betalingsvoorwaarden van Stripe.</p>
+
+    <h3>Automatische verlenging</h3>
+    <p>Abonnementen worden automatisch verlengd aan het einde van elke betaalperiode (maandelijks of jaarlijks), tenzij je het abonnement vóór de verlengingsdatum hebt opgezegd.</p>
+
+    <h3>Prijswijzigingen</h3>
+    <p>GoddessAlert behoudt zich het recht voor prijzen te wijzigen. Bij een prijswijziging word je minimaal 30 dagen van tevoren per e-mail geïnformeerd. De nieuwe prijs gaat in bij de eerstvolgende verlengingsdatum na de aankondiging.</p>
+  </section>
+
+  <!-- 6 -->
+  <section id="s6">
+    <h2><span class="section-num">6.</span> Annulering en restitutie</h2>
+
+    <h3>Annulering</h3>
+    <p>Je kunt je abonnement op elk moment opzeggen via de instellingen van de app of via <a href="mailto:hello@goddessalert.com">hello@goddessalert.com</a>. Na opzegging blijf je toegang houden tot het einde van de lopende betaalperiode.</p>
+
+    <h3>Restitutiebeleid</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Abonnement</th><th>Restitutie</th><th>Voorwaarden</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Maandelijks</td>
+            <td>14 dagen geld-terug-garantie</td>
+            <td>Verzoek binnen 14 dagen na eerste betaling via hello@goddessalert.com</td>
+          </tr>
+          <tr>
+            <td>Jaarlijks</td>
+            <td>Pro-rata restitutie</td>
+            <td>Resterende volledige maanden worden terugbetaald bij opzegging</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Restitutieverzoeken worden binnen 5 werkdagen verwerkt. Het bedrag wordt teruggestort op de oorspronkelijke betaalmethode. <strong>Bij toekenning van restitutie vervalt de toegang tot Premium functies onmiddellijk.</strong></p>
+    <div class="highlight">
+      Voor vragen over annulering of restitutie: <a href="mailto:hello@goddessalert.com">hello@goddessalert.com</a>
+    </div>
+  </section>
+
+  <!-- 7 -->
+  <section id="s7">
+    <h2><span class="section-num">7.</span> Jouw verantwoordelijkheden</h2>
+    <p>Als gebruiker van GoddessAlert ben je verantwoordelijk voor:</p>
+    <ul>
+      <li>Het juist en zorgvuldig invoeren van gegevens over jezelf en je naasten</li>
+      <li>Het respecteren van de privacy van de personen over wie je gegevens invoert</li>
+      <li>Het gebruik van de app conform het beoogde doel — het verbeteren van aandacht in persoonlijke relaties</li>
+      <li>Het niet delen van je account met derden</li>
+    </ul>
+    <p>GoddessAlert is een hulpmiddel. De verantwoordelijkheid voor je gedrag en keuzes in je relaties blijft te allen tijde bij jou.</p>
+  </section>
+
+  <!-- 8 -->
+  <section id="s8">
+    <h2><span class="section-num">8.</span> AI-tips en content</h2>
+    <p>GoddessAlert maakt gebruik van AI-technologie (Anthropic Claude API) voor het personaliseren van dagelijkse tips en content. Hierover geldt het volgende:</p>
+    <ul>
+      <li>Tips zijn <strong>suggesties</strong>, geen garanties voor resultaat</li>
+      <li>Tips vormen geen professioneel relationeel, psychologisch of medisch advies</li>
+      <li>GoddessAlert is geen vervanging voor professionele relatietherapie of begeleiding</li>
+      <li>De kwaliteit van tips kan variëren — gebruik je eigen oordeel</li>
+    </ul>
+    <div class="highlight">
+      Bij ernstige relatieproblemen raden wij aan professionele hulp te zoeken. GoddessAlert is een aanvulling, geen oplossing.
+    </div>
+  </section>
+
+  <!-- 9 -->
+  <section id="s9">
+    <h2><span class="section-num">9.</span> Intellectueel eigendom</h2>
+    <p>Alle content, ontwerpen, teksten, software en overige materialen van GoddessAlert zijn eigendom van GoddessAlert en beschermd door intellectuele eigendomsrechten. Het is niet toegestaan om content van GoddessAlert te kopiëren, verspreiden of commercieel te gebruiken zonder voorafgaande schriftelijke toestemming.</p>
+    <p>De door jou ingevoerde gegevens (herinneringen, profielinformatie) blijven jouw eigendom. Je verleent GoddessAlert een beperkte licentie om deze gegevens te verwerken ten behoeve van de dienstverlening.</p>
+  </section>
+
+  <!-- 10 -->
+  <section id="s10">
+    <h2><span class="section-num">10.</span> Beschikbaarheid van de dienst</h2>
+    <p>GoddessAlert streeft naar een hoge beschikbaarheid van het platform, maar garandeert geen ononderbroken toegang. De dienst kan tijdelijk niet beschikbaar zijn wegens onderhoud, updates of omstandigheden buiten onze controle.</p>
+    <p>GoddessAlert behoudt zich het recht voor de dienst op elk moment te wijzigen, uit te breiden of te beëindigen. Bij beëindiging van de dienst word je minimaal 30 dagen van tevoren per e-mail geïnformeerd en wordt een evenredig deel van je abonnement gerestitueerd.</p>
+  </section>
+
+  <!-- 11 -->
+  <section id="s11">
+    <h2><span class="section-num">11.</span> Aansprakelijkheid</h2>
+    <p>GoddessAlert is niet aansprakelijk voor:</p>
+    <ul>
+      <li>Indirecte schade, gevolgschade of gederfde winst</li>
+      <li>Schade als gevolg van tijdelijke onbeschikbaarheid van de dienst</li>
+      <li>Resultaten of uitkomsten van het gebruik van tips of aanbevelingen</li>
+      <li>Gegevens die door de gebruiker onjuist zijn ingevoerd</li>
+    </ul>
+    <p>De aansprakelijkheid van GoddessAlert is in alle gevallen beperkt tot het bedrag dat je in de drie maanden voorafgaand aan de schadeveroorzakende gebeurtenis aan GoddessAlert hebt betaald.</p>
+    <p>Deze beperking geldt niet bij opzet of grove nalatigheid van GoddessAlert.</p>
+  </section>
+
+  <!-- 12 -->
+  <section id="s12">
+    <h2><span class="section-num">12.</span> Wijzigingen in deze voorwaarden</h2>
+    <p>GoddessAlert kan deze Algemene Voorwaarden periodiek aanpassen. Bij wezenlijke wijzigingen word je minimaal 14 dagen van tevoren per e-mail geïnformeerd.</p>
+    <p>Bij voortgezet gebruik van GoddessAlert na de ingangsdatum van gewijzigde voorwaarden accepteer je de nieuwe voorwaarden. Als je niet akkoord gaat, kun je je abonnement opzeggen vóór de ingangsdatum.</p>
+  </section>
+
+  <!-- 13 -->
+  <section id="s13">
+    <h2><span class="section-num">13.</span> Toepasselijk recht en geschillen</h2>
+    <p>Op deze Algemene Voorwaarden is <strong>Nederlands recht</strong> van toepassing. Geschillen worden bij voorkeur in onderling overleg opgelost. Indien dit niet lukt, is de bevoegde rechter in Nederland exclusief bevoegd.</p>
+    <p>Als consument heb je ook de mogelijkheid een geschil voor te leggen aan de <a href="https://www.degeschillencommissie.nl" target="_blank">Geschillencommissie</a> of via het <a href="https://ec.europa.eu/consumers/odr" target="_blank">ODR-platform van de Europese Commissie</a>.</p>
+  </section>
+
+  <!-- 14 -->
+  <section id="s14">
+    <h2><span class="section-num">14.</span> Contact</h2>
+    <div class="contact-block">
+      <h3>Vragen over deze voorwaarden?</h3>
+      <p>Voor vragen over deze Algemene Voorwaarden, je abonnement of restitutie:</p>
+      <p>📧 <a href="mailto:hello@goddessalert.com">hello@goddessalert.com</a></p>
+      <p style="margin-top:16px; font-size:13px; color:rgba(255,255,255,0.4);">GoddessAlert &nbsp;·&nbsp; KvK 54496462 &nbsp;·&nbsp; goddessalert.com</p>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <p>© 2026 GoddessAlert &nbsp;·&nbsp; KvK 54496462 &nbsp;·&nbsp;
+  <a href="https://goddessalert.com/privacy.html">Privacy Statement</a> &nbsp;·&nbsp;
+  <a href="https://goddessalert.com/terms.html">Algemene Voorwaarden</a>
+  </p>
+  <p style="margin-top:8px;">Algemene Voorwaarden v1.0 — april 2026</p>
+</footer>
+
 </body>
 </html>
