@@ -6,13 +6,15 @@
         {
           "type": "query",
           "key": "token",
-          "value": "JOUW_GEHEIME_TOKEN"
+          "value": "ga-tools-2026"
         }
       ],
-      "dest": "/content-generator.html"
+      "dest": "/content-generator.html",
+      "continue": false
     },
     {
       "src": "/content-generator.html",
+      "status": 404,
       "dest": "/404.html"
     }
   ]
