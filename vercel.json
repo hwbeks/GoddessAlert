@@ -1,0 +1,19 @@
+{
+  "routes": [
+    {
+      "src": "/content-generator.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "token",
+          "value": "JOUW_GEHEIME_TOKEN"
+        }
+      ],
+      "dest": "/content-generator.html"
+    },
+    {
+      "src": "/content-generator.html",
+      "dest": "/404.html"
+    }
+  ]
+}
