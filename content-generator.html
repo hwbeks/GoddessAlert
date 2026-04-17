@@ -347,6 +347,20 @@
           <span class="copy-confirm" id="copyConfirm">Gekopieerd</span>
         </div>
       </div>
+
+      <div id="imagePromptSection" style="display:none; margin-top: 16px;">
+        <div class="section-title">Adobe Firefly — image prompt</div>
+        <div class="card">
+          <div style="font-size: 11px; color: var(--muted); margin-bottom: 10px; line-height: 1.6;">
+            Kopieer deze prompt &rarr; open <a href="https://firefly.adobe.com" target="_blank" style="color: var(--accent); text-decoration: none;">firefly.adobe.com</a> &rarr; plak in "Text to image" &rarr; stel aspect ratio in op 4:5
+          </div>
+          <div class="output-box" id="imagePromptBox" style="font-size: 13px; line-height: 1.7;"></div>
+          <div class="copy-row">
+            <button class="btn-small" onclick="copyImagePrompt()">Kopieer prompt</button>
+            <span class="copy-confirm" id="imageCopyConfirm">Gekopieerd</span>
+          </div>
+        </div>
+      </div>
     </div>
 
   </div>
@@ -525,6 +539,50 @@ ${instructions}`;
           const data = await resp.json();
           const text = data.content?.find(b => b.type === "text")?.text || "Geen resultaat.";
           outputBox.textContent = text;
+
+          if (activeChannel === "Instagram") {
+            document.getElementById("imagePromptSection").style.display = "block";
+            const imagePromptBox = document.getElementById("imagePromptBox");
+            imagePromptBox.textContent = "Image prompt wordt gegenereerd...";
+
+            const imagePromptText = `${isNL ? "Onderwerp van de post" : "Post topic"}: ${topic || (isNL ? "aandacht en respect in een relatie" : "attention and respect in a relationship")}`;
+
+            const imageResp = await fetch("https://api.anthropic.com/v1/messages", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "x-api-key": apiKey,
+                "anthropic-version": "2023-06-01",
+                "anthropic-dangerous-direct-browser-access": "true"
+              },
+              body: JSON.stringify({
+                model: "claude-sonnet-4-6",
+                max_tokens: 300,
+                system: `You are a visual art director for GoddessAlert, a relationship app with a dark, elegant brand identity.
+Brand visual style:
+- Dark background: near-black (#0d0d0d)
+- Warm gold accents (#e8c97e)
+- Mood: intimate, warm, cinematic, elegant, romantic but not cliche
+- No people shown unless essential — prefer symbolic, atmospheric, or object-based compositions
+- No text in the image
+- Photography or high-quality digital art style
+- Aspect ratio: 4:5 (Instagram portrait)
+
+Generate a single Adobe Firefly image prompt in English. Be specific about lighting, mood, colors, and composition. Max 80 words. Output only the prompt, nothing else.`,
+                messages: [{ role: "user", content: `Create an Adobe Firefly image prompt for an Instagram post about: ${imagePromptText}` }]
+              })
+            });
+
+            if (imageResp.ok) {
+              const imageData = await imageResp.json();
+              const imagePrompt = imageData.content?.find(b => b.type === "text")?.text || "";
+              imagePromptBox.textContent = imagePrompt;
+            } else {
+              imagePromptBox.textContent = "Kon geen image prompt genereren. Probeer opnieuw.";
+            }
+          } else {
+            document.getElementById("imagePromptSection").style.display = "none";
+          }
         }
       } catch(e) {
         outputBox.textContent = "Verbindingsfout. Controleer je API key en probeer opnieuw.";
@@ -538,6 +596,15 @@ ${instructions}`;
       const text = document.getElementById("outputBox").textContent;
       navigator.clipboard.writeText(text).then(() => {
         const c = document.getElementById("copyConfirm");
+        c.style.display = "inline";
+        setTimeout(() => c.style.display = "none", 2000);
+      });
+    }
+
+    function copyImagePrompt() {
+      const text = document.getElementById("imagePromptBox").textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        const c = document.getElementById("imageCopyConfirm");
         c.style.display = "inline";
         setTimeout(() => c.style.display = "none", 2000);
       });
