@@ -355,6 +355,13 @@
     let activeChannel = "Instagram";
     let activeLang = "nl";
 
+    const apiKeyInput = document.getElementById("apiKey");
+    const savedKey = localStorage.getItem("ga_anthropic_key");
+    if (savedKey) apiKeyInput.value = savedKey;
+    apiKeyInput.addEventListener("input", function() {
+      localStorage.setItem("ga_anthropic_key", this.value.trim());
+    });
+
     document.getElementById("channelGrid").addEventListener("click", function(e) {
       const btn = e.target.closest(".channel-btn");
       if (!btn) return;
