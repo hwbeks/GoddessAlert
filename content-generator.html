@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,6 +17,8 @@
       --green: #7ee8a2;
       --text: #f0ece0;
       --muted: #888070;
+      --conscious: #a78bfa;
+      --conscious-soft: #a78bfa18;
     }
 
     body {
@@ -30,232 +32,85 @@
       padding: 40px 24px 80px;
     }
 
-    .page {
-      width: 100%;
-      max-width: 460px;
-    }
+    .page { width: 100%; max-width: 460px; }
 
-    .logo {
-      text-align: center;
-      margin-bottom: 32px;
-    }
+    .logo { text-align: center; margin-bottom: 32px; }
+    .logo-title { font-size: 20px; color: var(--accent); letter-spacing: 2px; text-transform: uppercase; }
+    .logo-sub { font-size: 11px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; }
 
-    .logo-title {
-      font-size: 20px;
-      color: var(--accent);
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
+    .section-title { font-size: 11px; color: var(--muted); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 12px; }
 
-    .logo-sub {
-      font-size: 11px;
-      color: var(--muted);
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-top: 4px;
-    }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 16px 18px; margin-bottom: 10px; }
 
-    .section-title {
-      font-size: 11px;
-      color: var(--muted);
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 16px 18px;
-      margin-bottom: 10px;
-    }
-
-    .channel-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
+    .channel-grid { display: flex; flex-wrap: wrap; gap: 8px; }
 
     .channel-btn {
-      padding: 8px 14px;
-      border-radius: 30px;
-      border: 1px solid var(--border);
-      background: transparent;
-      color: var(--muted);
-      font-size: 13px;
-      font-family: 'Georgia', serif;
-      cursor: pointer;
-      transition: all 0.15s;
+      padding: 8px 14px; border-radius: 30px; border: 1px solid var(--border);
+      background: transparent; color: var(--muted); font-size: 13px;
+      font-family: 'Georgia', serif; cursor: pointer; transition: all 0.15s;
+    }
+    .channel-btn:hover { border-color: var(--accent); color: var(--text); }
+    .channel-btn.active { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+    .channel-btn.conscious-btn { border-color: var(--conscious); color: var(--conscious); }
+    .channel-btn.conscious-btn.active { background: var(--conscious-soft); border-color: var(--conscious); color: var(--conscious); box-shadow: 0 0 0 1px var(--conscious); }
+
+    .conscious-note {
+      font-size: 11px; color: var(--conscious); margin-top: 10px; line-height: 1.6;
+      padding: 8px 12px; background: var(--conscious-soft); border-radius: 8px;
+      border: 1px solid var(--conscious); display: none;
     }
 
-    .channel-btn:hover {
-      border-color: var(--accent);
-      color: var(--text);
-    }
+    .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 10px; }
 
-    .channel-btn.active {
-      background: var(--accent-soft);
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-
-    .row2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-bottom: 10px;
-    }
-
-    label.field-label {
-      font-size: 11px;
-      color: var(--muted);
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-      display: block;
-    }
+    label.field-label { font-size: 11px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; display: block; }
 
     select, textarea, input[type="text"] {
-      width: 100%;
-      background: #111;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 12px 14px;
-      color: var(--text);
-      font-size: 14px;
-      font-family: 'Georgia', serif;
-      outline: none;
-      color-scheme: dark;
-      transition: border-color 0.15s;
+      width: 100%; background: #111; border: 1px solid var(--border); border-radius: 12px;
+      padding: 12px 14px; color: var(--text); font-size: 14px; font-family: 'Georgia', serif;
+      outline: none; color-scheme: dark; transition: border-color 0.15s;
     }
-
-    select:focus, textarea:focus {
-      border-color: var(--accent);
-    }
-
-    textarea {
-      min-height: 90px;
-      resize: vertical;
-      line-height: 1.6;
-      margin-bottom: 0;
-    }
+    select:focus, textarea:focus { border-color: var(--accent); }
+    textarea { min-height: 90px; resize: vertical; line-height: 1.6; }
 
     .btn {
-      width: 100%;
-      background: var(--accent);
-      color: #0d0d0d;
-      border: none;
-      border-radius: 30px;
-      padding: 15px;
-      font-weight: bold;
-      font-size: 15px;
-      cursor: pointer;
-      font-family: 'Georgia', serif;
-      letter-spacing: 0.5px;
-      margin-top: 8px;
-      transition: opacity 0.15s;
+      width: 100%; background: var(--accent); color: #0d0d0d; border: none;
+      border-radius: 30px; padding: 15px; font-weight: bold; font-size: 15px;
+      cursor: pointer; font-family: 'Georgia', serif; letter-spacing: 0.5px;
+      margin-top: 8px; transition: opacity 0.15s;
     }
-
     .btn:hover { opacity: 0.88; }
     .btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
-    .btn-ghost {
-      width: 100%;
-      background: transparent;
-      color: var(--muted);
-      border: 1px solid var(--border);
-      border-radius: 30px;
-      padding: 13px;
-      font-size: 14px;
-      cursor: pointer;
-      font-family: 'Georgia', serif;
-      margin-top: 8px;
-      transition: border-color 0.15s, color 0.15s;
-    }
-
-    .btn-ghost:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-
     .output-box {
-      background: #111;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 16px;
-      font-size: 14px;
-      line-height: 1.8;
-      color: var(--text);
-      white-space: pre-wrap;
-      min-height: 80px;
+      background: #111; border: 1px solid var(--border); border-radius: 12px;
+      padding: 16px; font-size: 14px; line-height: 1.8; color: var(--text);
+      white-space: pre-wrap; min-height: 80px;
     }
 
     .output-section { display: none; }
 
-    .copy-row {
-      display: flex;
-      gap: 8px;
-      margin-top: 10px;
-      align-items: center;
-    }
+    .copy-row { display: flex; gap: 8px; margin-top: 10px; align-items: center; }
 
     .btn-small {
-      background: transparent;
-      border: 1px solid var(--border);
-      border-radius: 30px;
-      padding: 8px 18px;
-      color: var(--muted);
-      font-size: 13px;
-      font-family: 'Georgia', serif;
-      cursor: pointer;
-      transition: border-color 0.15s, color 0.15s;
+      background: transparent; border: 1px solid var(--border); border-radius: 30px;
+      padding: 8px 18px; color: var(--muted); font-size: 13px; font-family: 'Georgia', serif;
+      cursor: pointer; transition: border-color 0.15s, color 0.15s;
     }
+    .btn-small:hover { border-color: var(--accent); color: var(--accent); }
 
-    .btn-small:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
+    .copy-confirm { font-size: 12px; color: var(--green); display: none; }
 
-    .copy-confirm {
-      font-size: 12px;
-      color: var(--green);
-      display: none;
-    }
+    .api-section { margin-bottom: 24px; }
+    .api-note { font-size: 11px; color: var(--muted); margin-top: 6px; line-height: 1.6; }
 
-    .api-section {
-      margin-bottom: 24px;
-    }
+    .divider { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
 
-    .api-note {
-      font-size: 11px;
-      color: var(--muted);
-      margin-top: 6px;
-      line-height: 1.6;
-    }
+    .loading-indicator { color: var(--muted); font-size: 13px; font-style: italic; }
 
-    .divider {
-      border: none;
-      border-top: 1px solid var(--border);
-      margin: 24px 0;
-    }
-
-    .loading-indicator {
-      color: var(--muted);
-      font-size: 13px;
-      font-style: italic;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
-    }
-
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
     .pulse { animation: pulse 1.2s infinite; }
 
-    @media (max-width: 480px) {
-      .row2 { grid-template-columns: 1fr; }
-    }
+    @media (max-width: 480px) { .row2 { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -266,33 +121,34 @@
       <div class="logo-sub">Content Generator</div>
     </div>
 
-    <!-- API Key -->
     <div class="api-section">
       <div class="section-title">Anthropic API key</div>
       <div class="card">
         <label class="field-label" for="apiKey">API key</label>
         <input type="text" id="apiKey" placeholder="sk-ant-..." autocomplete="off" />
-        <div class="api-note">Wordt alleen lokaal gebruikt. Nooit verstuurd naar een andere server dan Anthropic.</div>
+        <div class="api-note">Stored locally only. Never sent to any server other than Anthropic.</div>
       </div>
     </div>
 
     <hr class="divider" />
 
-    <!-- Kanaal -->
-    <div class="section-title">Kanaal</div>
+    <div class="section-title">Channel</div>
     <div class="card" style="margin-bottom: 10px;">
       <div class="channel-grid" id="channelGrid">
         <button class="channel-btn active" data-ch="Instagram">Instagram</button>
         <button class="channel-btn" data-ch="Reddit">Reddit</button>
         <button class="channel-btn" data-ch="Email affiliate">Email affiliate</button>
-        <button class="channel-btn" data-ch="Nieuwsbrief">Nieuwsbrief</button>
-        <button class="channel-btn" data-ch="Stuur dit naar hem">Stuur dit naar hem</button>
-        <button class="channel-btn" data-ch="Stuur dit naar haar">Stuur dit naar haar</button>
+        <button class="channel-btn" data-ch="Newsletter">Newsletter</button>
+        <button class="channel-btn" data-ch="Send to him">Send to him</button>
+        <button class="channel-btn" data-ch="Send to her">Send to her</button>
+        <button class="channel-btn conscious-btn" data-ch="Conscious Alternative">⚡ Conscious Alternative</button>
+      </div>
+      <div class="conscious-note" id="consciousNote">
+        This channel positions GoddessAlert as a direct countervoice to the manosphere. Content takes a clear stance without attacking individuals — always frame what GoddessAlert IS, not what it fights against. Use for comment replies, standalone posts, or discussion starters.
       </div>
     </div>
 
-    <!-- Taal -->
-    <div class="section-title" style="margin-top: 16px;">Taal</div>
+    <div class="section-title" style="margin-top: 16px;">Language</div>
     <div class="card" style="margin-bottom: 10px;">
       <div class="channel-grid" id="langGrid">
         <button class="channel-btn active" data-lang="nl">Nederlands</button>
@@ -300,51 +156,48 @@
       </div>
     </div>
 
-    <!-- Tone + Doel -->
     <div class="row2">
       <div>
         <div class="section-title">Tone</div>
         <div class="card" style="padding: 12px 14px;">
           <select id="toneSelect">
-            <option value="warm">Warm &amp; menselijk</option>
-            <option value="scherp">Scherp &amp; direct</option>
-            <option value="humoristisch">Luchtig &amp; humoristisch</option>
-            <option value="inspirerend">Inspirerend</option>
+            <option value="warm">Warm &amp; human</option>
+            <option value="scherp">Sharp &amp; direct</option>
+            <option value="humoristisch">Light &amp; humorous</option>
+            <option value="inspirerend">Inspiring</option>
           </select>
         </div>
       </div>
       <div>
-        <div class="section-title">Doel</div>
+        <div class="section-title">Goal</div>
         <div class="card" style="padding: 12px 14px;">
           <select id="goalSelect">
-            <option value="awareness">Naamsbekendheid</option>
-            <option value="download">App downloaden</option>
-            <option value="engagement">Reactie uitlokken</option>
-            <option value="affiliate">Affiliate activeren</option>
+            <option value="awareness">Brand awareness</option>
+            <option value="download">App download</option>
+            <option value="engagement">Spark engagement</option>
+            <option value="affiliate">Activate affiliate</option>
           </select>
         </div>
       </div>
     </div>
 
-    <!-- Aanleiding -->
-    <div class="section-title">Aanleiding of onderwerp</div>
+    <div class="section-title">Occasion or topic</div>
     <div class="card">
-      <textarea id="topicInput" placeholder="Bijv: het is vrijdagmiddag, nieuwe feature: partner birthday reminder, zij had een zware week, Valentijnsdag..."></textarea>
+      <textarea id="topicInput" placeholder="E.g. Friday afternoon, new feature: partner birthday reminder, she had a tough week, Valentine's Day, react to manosphere post about dominance..."></textarea>
     </div>
 
-    <button class="btn" id="genBtn" onclick="generate()">Genereer content</button>
+    <button class="btn" id="genBtn" onclick="generate()">Generate content</button>
 
     <hr class="divider" />
 
-    <!-- Output -->
     <div class="output-section" id="outputSection">
-      <div class="section-title">Gegenereerde content</div>
+      <div class="section-title">Generated content</div>
       <div class="card">
         <div class="output-box" id="outputBox"></div>
         <div class="copy-row">
-          <button class="btn-small" onclick="copyOutput()">Kopieer</button>
-          <button class="btn-small" onclick="generate()">Opnieuw genereren</button>
-          <span class="copy-confirm" id="copyConfirm">Gekopieerd</span>
+          <button class="btn-small" onclick="copyOutput()">Copy</button>
+          <button class="btn-small" onclick="generate()">Regenerate</button>
+          <span class="copy-confirm" id="copyConfirm">Copied</span>
         </div>
       </div>
 
@@ -352,12 +205,12 @@
         <div class="section-title">Adobe Firefly — image prompt</div>
         <div class="card">
           <div style="font-size: 11px; color: var(--muted); margin-bottom: 10px; line-height: 1.6;">
-            Kopieer deze prompt &rarr; open <a href="https://firefly.adobe.com" target="_blank" style="color: var(--accent); text-decoration: none;">firefly.adobe.com</a> &rarr; plak in "Text to image" &rarr; stel aspect ratio in op 4:5
+            Copy this prompt &rarr; open <a href="https://firefly.adobe.com" target="_blank" style="color: var(--accent); text-decoration: none;">firefly.adobe.com</a> &rarr; paste in "Text to image" &rarr; set aspect ratio to 4:5
           </div>
           <div class="output-box" id="imagePromptBox" style="font-size: 13px; line-height: 1.7;"></div>
           <div class="copy-row">
-            <button class="btn-small" onclick="copyImagePrompt()">Kopieer prompt</button>
-            <span class="copy-confirm" id="imageCopyConfirm">Gekopieerd</span>
+            <button class="btn-small" onclick="copyImagePrompt()">Copy prompt</button>
+            <span class="copy-confirm" id="imageCopyConfirm">Copied</span>
           </div>
         </div>
       </div>
@@ -382,6 +235,8 @@
       document.querySelectorAll("#channelGrid .channel-btn").forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
       activeChannel = btn.dataset.ch;
+      document.getElementById("consciousNote").style.display =
+        activeChannel === "Conscious Alternative" ? "block" : "none";
     });
 
     document.getElementById("langGrid").addEventListener("click", function(e) {
@@ -392,15 +247,15 @@
       activeLang = btn.dataset.lang;
     });
 
-    const SYSTEM_NL = `Je bent de Content Agent van GoddessAlert — een Nederlandse webapp voor mannen om attenter te zijn voor hun partner.
+    const SYSTEM_NL = `Je bent de Content Agent van GoddessAlert — een webapp voor mannen om attenter te zijn voor hun partner.
 
 MERKIDENTITEIT:
 - Bewuste tegenhanger van de manosphere: geen dominantie, geen manipulatie, geen pickup-taal
-- Kern: echte aandacht en respect voor de partner
+- Kern: echte aandacht, respect en gelijkwaardigheid in relaties
+- GoddessAlert gelooft niet in "princess treatment" of onderdanigheid — wel in wederzijds respect en bewuste aandacht
 - 10% van de winst gaat naar verbetering van de vrouwenpositie
 - 10% van de winst gaat naar vergroening
 - Tagline: "Wees de man die zij verdient"
-- Subtagline: "She notices everything. Now, so do you."
 - Doelgroep primair: Nederlandse en Vlaamse mannen, 28-45 jaar, in vaste relatie
 - Doelgroep secundair: vrouwen die de app cadeau doen aan hun partner
 
@@ -408,107 +263,99 @@ VERBODEN:
 - Geen pickup-taal, dominantie-frames, manipulatietechnieken
 - Geen seksistische grappen of stereotypen
 - Geen overdreven hype of marketingclichés
+- Geen directe aanvallen op specifieke personen
 
-SCHRIJFSTIJL:
-- Direct, eerlijk, menselijk
-- Geen overdreven uitroeptekens
-- Geen "game changer", "revolutionair", "episch"
-- Wel: concreet, herkenbaar, een beetje zelfspot mag
-
-Schrijf uitsluitend de gevraagde content. Geen uitleg, geen preamble. Begin direct.`;
+SCHRIJFSTIJL: Direct, eerlijk, menselijk. Geen hype. Concreet en herkenbaar.
+Schrijf uitsluitend de gevraagde content. Begin direct.`;
 
     const SYSTEM_EN = `You are the Content Agent for GoddessAlert — a web app that helps men be more attentive to their partner.
 
 BRAND IDENTITY:
 - A conscious alternative to the manosphere: no dominance, no manipulation, no pickup language
-- Core value: genuine attention and respect for your partner
+- Core value: genuine attention, respect, and equality in relationships
+- GoddessAlert doesn't believe in "princess treatment" — it believes in mutual respect and conscious attention
 - 10% of profits go toward improving women's position in society
-- 10% of profits go toward sustainability and greening initiatives
+- 10% of profits go toward sustainability
 - Tagline: "Be the man she deserves"
-- Subtagline: "She notices everything. Now, so do you."
 - Primary audience: men aged 28-45 in committed relationships
 - Secondary audience: women who gift the app to their partner
-- International focus: strong potential in English-speaking markets, Japan, and South Korea
 
-FORBIDDEN:
-- No pickup language, dominance framing, or manipulation tactics
-- No sexist humor or stereotypes
-- No marketing hyperbole or clichés
-
-WRITING STYLE:
-- Direct, honest, human
-- No excessive exclamation marks
-- No "game changer", "revolutionary", "epic"
-- Concrete, relatable, a touch of self-awareness is welcome
-
-Write only the requested content. No explanation, no preamble. Start directly.`;
+FORBIDDEN: No pickup language, dominance framing, manipulation, sexist humor, hyperbole, or direct attacks on individuals.
+WRITING STYLE: Direct, honest, human. No hype. Concrete and relatable.
+Write only the requested content. Start directly.`;
 
     const channelInstructions = {
       nl: {
-        "Instagram": "Schrijf een Instagram caption (max 220 woorden). Gebruik alinea-breaks voor leesbaarheid. Voeg 8-12 relevante hashtags toe op een nieuwe regel. Max 3-4 emoji strategisch geplaatst.",
-        "Reddit": "Schrijf een Reddit post voor r/relationships, r/mannen of vergelijkbaar. Inclusief een pakkende titel en een eerlijke, niet-salesy post body. Schrijf als een echte gebruiker die iets deelt, niet als een merk.",
-        "Email affiliate": "Schrijf een koude outreach e-mail naar een relatietherapeut of relatiecoach. Doel: uitnodigen als affiliate (30% commissie). Formeel maar persoonlijk. Max 180 woorden. Begin met Onderwerpregel: op een nieuwe regel, dan de e-mail.",
-        "Nieuwsbrief": "Schrijf een nieuwsbrief-sectie van max 150 woorden. Warm, persoonlijk, als een tip van een vriend. Verwerk de aanleiding of het seizoensmoment.",
-        "Stuur dit naar hem": "Schrijf een kort bericht dat een vrouw naar haar partner kan sturen om hem attent te maken op GoddessAlert. Prikkelend, luchtig, geen druk. Max 80 woorden. Moet uitnodigen, niet aanvallen. De vrouw is de afzender.",
-        "Stuur dit naar haar": "Schrijf een kort bericht dat een man naar zijn partner stuurt — niet om de app te promoten, maar als attent gebaar op basis van de aanleiding. Warm, concreet, oprecht. Max 60 woorden. Geen app-reclame, gewoon een mooi moment creëren."
+        "Instagram": "Schrijf een Instagram caption (max 220 woorden). Alinea-breaks. 8-12 hashtags op nieuwe regel. Max 4 emoji strategisch.",
+        "Reddit": "Schrijf een Reddit post voor r/relationships of r/mannen. Pakkende titel + eerlijke post body. Schrijf als echte gebruiker, niet als merk.",
+        "Email affiliate": "Koude outreach e-mail naar relatietherapeut/coach. Doel: affiliate (30% commissie). Formeel maar persoonlijk. Max 180 woorden. Begin met 'Onderwerpregel:' op nieuwe regel.",
+        "Newsletter": "Nieuwsbrief-sectie max 150 woorden. Warm, persoonlijk, als tip van een vriend.",
+        "Send to him": "Kort bericht dat een vrouw naar haar partner stuurt om hem op GoddessAlert te wijzen. Prikkelend, luchtig, geen druk. Max 80 woorden. De vrouw is afzender.",
+        "Send to her": "Kort bericht dat een man naar zijn partner stuurt als attent gebaar. Warm, concreet, oprecht. Max 60 woorden. Geen app-reclame — gewoon een mooi moment.",
+        "Conscious Alternative": `Positioneer GoddessAlert als bewust tegengeluid op de manosphere.
+
+REGELS:
+- Neem duidelijk stelling — niet neutraal, wel respectvol
+- Geen directe aanvallen op personen of accounts
+- Frame altijd positief: wat GoddessAlert IS
+- Provocerend genoeg om reactie uit te lokken
+
+Geef twee varianten:
+(1) KORT — geschikt als comment reactie (max 60 woorden)
+(2) LANG — geschikt als standalone post of caption (max 180 woorden)`
       },
       en: {
-        "Instagram": "Write an Instagram caption (max 220 words). Use paragraph breaks for readability. Add 8-12 relevant hashtags on a new line. Max 3-4 emoji placed strategically.",
-        "Reddit": "Write a Reddit post for r/relationships, r/marriage, or similar. Include a compelling title and an honest, non-salesy post body. Write like a real user sharing something, not a brand.",
-        "Email affiliate": "Write a cold outreach email to a relationship therapist or coach. Goal: invite them as an affiliate (30% commission). Professional but personal. Max 180 words. Start with Subject line: on a new line, then the email.",
-        "Nieuwsbrief": "Write a newsletter section of max 150 words. Warm, personal, like a tip from a friend. Incorporate the occasion or seasonal moment.",
-        "Stuur dit naar hem": "Write a short message a woman can send to her partner to make him aware of GoddessAlert. Intriguing, light, no pressure. Max 80 words. Should invite, not attack. The woman is the sender.",
-        "Stuur dit naar haar": "Write a short message a man sends to his partner — not to promote the app, but as an attentive gesture based on the occasion. Warm, concrete, sincere. Max 60 words. No app promotion, just create a nice moment."
+        "Instagram": "Write an Instagram caption (max 220 words). Paragraph breaks. 8-12 hashtags on new line. Max 4 emoji placed strategically.",
+        "Reddit": "Write a Reddit post for r/relationships or r/marriage. Compelling title + honest post body. Write like a real user, not a brand.",
+        "Email affiliate": "Cold outreach email to relationship therapist/coach. Goal: affiliate (30% commission). Professional but personal. Max 180 words. Start with 'Subject line:' on new line.",
+        "Newsletter": "Newsletter section max 150 words. Warm, personal, like a tip from a friend.",
+        "Send to him": "Short message a woman sends to her partner to introduce GoddessAlert. Intriguing, light, no pressure. Max 80 words. Woman is the sender.",
+        "Send to her": "Short message a man sends to his partner as an attentive gesture. Warm, concrete, sincere. Max 60 words. No app promotion — just create a nice moment.",
+        "Conscious Alternative": `Position GoddessAlert as a conscious countervoice to the manosphere.
+
+RULES:
+- Take a clear stance — not neutral, but respectful
+- No direct attacks on individuals or specific accounts
+- Always frame positively: what GoddessAlert IS
+- Provocative enough to spark a reaction
+
+Provide two variants:
+(1) SHORT — suitable as a comment reply (max 60 words)
+(2) LONG — suitable as a standalone post or caption (max 180 words)`
       }
     };
 
     async function generate() {
       const apiKey = document.getElementById("apiKey").value.trim();
-      if (!apiKey) {
-        alert("Vul eerst je Anthropic API key in.");
-        return;
-      }
+      if (!apiKey) { alert("Please enter your Anthropic API key first."); return; }
 
       const topic = document.getElementById("topicInput").value.trim();
       const tone = document.getElementById("toneSelect").value;
       const goal = document.getElementById("goalSelect").value;
-
       const isNL = activeLang === "nl";
       const SYSTEM = isNL ? SYSTEM_NL : SYSTEM_EN;
 
-      const toneMap = isNL ? {
-        warm: "warm en menselijk", scherp: "scherp en direct",
-        humoristisch: "luchtig en met humor", inspirerend: "inspirerend en motiverend"
-      } : {
-        warm: "warm and human", scherp: "sharp and direct",
-        humoristisch: "light and humorous", inspirerend: "inspiring and motivating"
-      };
-      const goalMap = isNL ? {
-        awareness: "naamsbekendheid creëren voor GoddessAlert",
-        download: "mensen aanzetten de app te downloaden",
-        engagement: "een reactie of gesprek uitlokken",
-        affiliate: "een relatietherapeut of coach activeren als affiliate (30% commissie)"
-      } : {
-        awareness: "create brand awareness for GoddessAlert",
-        download: "get people to download the app",
-        engagement: "spark a reaction or conversation",
-        affiliate: "activate a relationship therapist or coach as affiliate (30% commission)"
-      };
+      const toneMap = isNL
+        ? { warm: "warm en menselijk", scherp: "scherp en direct", humoristisch: "luchtig en met humor", inspirerend: "inspirerend" }
+        : { warm: "warm and human", scherp: "sharp and direct", humoristisch: "light and humorous", inspirerend: "inspiring" };
 
-      const instructions = channelInstructions[activeLang][activeChannel] || channelInstructions["nl"][activeChannel];
-      const topicLabel = isNL ? "Aanleiding/onderwerp" : "Occasion/topic";
-      const topicFallback = isNL ? "geen specifiek onderwerp — kies iets herkenbaars voor de doelgroep" : "no specific topic — choose something relatable for the target audience";
+      const goalMap = isNL
+        ? { awareness: "naamsbekendheid voor GoddessAlert", download: "mensen aanzetten de app te downloaden", engagement: "reactie of gesprek uitlokken", affiliate: "relatietherapeut activeren als affiliate (30% commissie)" }
+        : { awareness: "create brand awareness for GoddessAlert", download: "get people to download the app", engagement: "spark a reaction or conversation", affiliate: "activate a relationship therapist as affiliate (30% commission)" };
+
+      const instructions = channelInstructions[activeLang]?.[activeChannel] || channelInstructions["en"][activeChannel] || "";
+      const topicFallback = isNL ? "geen specifiek onderwerp — kies iets herkenbaars" : "no specific topic — choose something relatable";
 
       const prompt = `Channel: ${activeChannel}
 Tone: ${toneMap[tone]}
 Goal: ${goalMap[goal]}
-${topicLabel}: ${topic || topicFallback}
+${isNL ? "Aanleiding" : "Occasion"}: ${topic || topicFallback}
 
 ${instructions}`;
 
       const btn = document.getElementById("genBtn");
       btn.disabled = true;
-      btn.textContent = "Genereren...";
+      btn.textContent = isNL ? "Genereren..." : "Generating...";
 
       const outputSection = document.getElementById("outputSection");
       const outputBox = document.getElementById("outputBox");
@@ -534,18 +381,16 @@ ${instructions}`;
 
         if (!resp.ok) {
           const err = await resp.json();
-          outputBox.textContent = `Fout: ${err.error?.message || resp.statusText}`;
+          outputBox.textContent = `Error: ${err.error?.message || resp.statusText}`;
         } else {
           const data = await resp.json();
-          const text = data.content?.find(b => b.type === "text")?.text || "Geen resultaat.";
+          const text = data.content?.find(b => b.type === "text")?.text || "No result.";
           outputBox.textContent = text;
 
           if (activeChannel === "Instagram") {
             document.getElementById("imagePromptSection").style.display = "block";
             const imagePromptBox = document.getElementById("imagePromptBox");
-            imagePromptBox.textContent = "Image prompt wordt gegenereerd...";
-
-            const imagePromptText = `${isNL ? "Onderwerp van de post" : "Post topic"}: ${topic || (isNL ? "aandacht en respect in een relatie" : "attention and respect in a relationship")}`;
+            imagePromptBox.textContent = isNL ? "Image prompt wordt gegenereerd..." : "Generating image prompt...";
 
             const imageResp = await fetch("https://api.anthropic.com/v1/messages", {
               method: "POST",
@@ -559,42 +404,33 @@ ${instructions}`;
                 model: "claude-sonnet-4-6",
                 max_tokens: 300,
                 system: `You are a visual art director for GoddessAlert, a relationship app with a dark, elegant brand identity.
-Brand visual style:
-- Dark background: near-black (#0d0d0d)
-- Warm gold accents (#e8c97e)
-- Mood: intimate, warm, cinematic, elegant, romantic but not cliche
-- No people shown unless essential — prefer symbolic, atmospheric, or object-based compositions
-- No text in the image
-- Photography or high-quality digital art style
-- Aspect ratio: 4:5 (Instagram portrait)
-
-Generate a single Adobe Firefly image prompt in English. Be specific about lighting, mood, colors, and composition. Max 80 words. Output only the prompt, nothing else.`,
-                messages: [{ role: "user", content: `Create an Adobe Firefly image prompt for an Instagram post about: ${imagePromptText}` }]
+Style: dark near-black background, warm gold accents (#e8c97e), intimate, cinematic, elegant.
+No people unless essential. No text in image. Photography or high-quality digital art. Aspect 4:5.
+Generate a single Adobe Firefly prompt in English. Max 80 words. Output only the prompt.`,
+                messages: [{ role: "user", content: `Adobe Firefly prompt for Instagram post about: ${topic || "attention and respect in a relationship"}` }]
               })
             });
 
             if (imageResp.ok) {
               const imageData = await imageResp.json();
-              const imagePrompt = imageData.content?.find(b => b.type === "text")?.text || "";
-              imagePromptBox.textContent = imagePrompt;
+              imagePromptBox.textContent = imageData.content?.find(b => b.type === "text")?.text || "";
             } else {
-              imagePromptBox.textContent = "Kon geen image prompt genereren. Probeer opnieuw.";
+              imagePromptBox.textContent = "Could not generate image prompt.";
             }
           } else {
             document.getElementById("imagePromptSection").style.display = "none";
           }
         }
       } catch(e) {
-        outputBox.textContent = "Verbindingsfout. Controleer je API key en probeer opnieuw.";
+        outputBox.textContent = "Connection error. Check your API key and try again.";
       }
 
       btn.disabled = false;
-      btn.textContent = "Genereer content";
+      btn.textContent = isNL ? "Genereer content" : "Generate content";
     }
 
     function copyOutput() {
-      const text = document.getElementById("outputBox").textContent;
-      navigator.clipboard.writeText(text).then(() => {
+      navigator.clipboard.writeText(document.getElementById("outputBox").textContent).then(() => {
         const c = document.getElementById("copyConfirm");
         c.style.display = "inline";
         setTimeout(() => c.style.display = "none", 2000);
@@ -602,8 +438,7 @@ Generate a single Adobe Firefly image prompt in English. Be specific about light
     }
 
     function copyImagePrompt() {
-      const text = document.getElementById("imagePromptBox").textContent;
-      navigator.clipboard.writeText(text).then(() => {
+      navigator.clipboard.writeText(document.getElementById("imagePromptBox").textContent).then(() => {
         const c = document.getElementById("imageCopyConfirm");
         c.style.display = "inline";
         setTimeout(() => c.style.display = "none", 2000);
