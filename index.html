@@ -39,7 +39,7 @@
       pointer-events: none; z-index: 0; opacity: 0.4;
     }
 
-    /* ── NAV ── */
+    /* NAV */
     nav {
       position: fixed; top: 0; left: 0; right: 0;
       padding: 20px 40px;
@@ -53,6 +53,14 @@
       color: var(--gold); letter-spacing: 1px;
       text-decoration: none;
     }
+    .nav-right { display: flex; align-items: center; gap: 20px; }
+    .nav-instagram {
+      display: flex; align-items: center; gap: 7px;
+      color: var(--muted); text-decoration: none; font-size: 13px;
+      transition: color 0.2s;
+    }
+    .nav-instagram:hover { color: var(--gold); }
+    .nav-instagram svg { width: 16px; height: 16px; fill: currentColor; }
     .nav-cta {
       background: var(--gold); color: #0a0a0a;
       border: none; border-radius: 30px;
@@ -64,7 +72,7 @@
     }
     .nav-cta:hover { opacity: 0.85; transform: translateY(-1px); }
 
-    /* ── HERO ── */
+    /* HERO */
     .hero {
       min-height: 100vh;
       display: flex; flex-direction: column;
@@ -111,7 +119,7 @@
       background: var(--gold); display: inline-block;
     }
 
-    /* ── BUTTONS ── */
+    /* BUTTONS */
     .btn-primary {
       background: var(--gold); color: #0a0a0a;
       border: none; border-radius: 40px;
@@ -131,7 +139,26 @@
     }
     .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
 
-    /* ── QUOTE ── */
+    /* MERKWAARDEN BANNER */
+    .values-banner {
+      background: linear-gradient(135deg, #0f0d08, #131310);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 28px 40px;
+      display: flex; align-items: center; justify-content: center;
+      gap: 48px; flex-wrap: wrap;
+      position: relative; z-index: 1;
+    }
+    .value-item {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 13px; color: var(--muted);
+    }
+    .value-dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--gold); flex-shrink: 0;
+    }
+
+    /* QUOTE */
     .quote-section {
       text-align: center; padding: 80px 24px;
       max-width: 720px; margin: 0 auto;
@@ -145,7 +172,7 @@
     .quote-text em { color: var(--gold); }
     .quote-attr { font-size: 13px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; }
 
-    /* ── SECTIONS ── */
+    /* SECTIONS */
     section {
       position: relative; z-index: 1;
       padding: 100px 24px; max-width: 1000px; margin: 0 auto;
@@ -155,14 +182,14 @@
     .section-title em { font-style: italic; color: var(--gold); }
     .section-sub { font-size: 17px; color: var(--muted); max-width: 540px; margin-bottom: 48px; }
 
-    /* ── PROBLEM ── */
+    /* PROBLEM */
     .problem-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
     .problem-card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 28px; }
     .problem-icon { font-size: 32px; margin-bottom: 14px; }
     .problem-title { font-size: 17px; font-weight: 500; margin-bottom: 8px; }
     .problem-text { font-size: 14px; color: var(--muted); line-height: 1.7; }
 
-    /* ── STEPS ── */
+    /* STEPS */
     .steps { display: flex; flex-direction: column; gap: 0; position: relative; }
     .steps::before {
       content: ''; position: absolute; left: 27px; top: 0; bottom: 0;
@@ -180,7 +207,7 @@
     .step-title { font-size: 18px; font-weight: 500; margin-bottom: 6px; }
     .step-text { font-size: 15px; color: var(--muted); }
 
-    /* ── FEATURES ── */
+    /* FEATURES */
     .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
     .feature-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; transition: border-color 0.2s; }
     .feature-card:hover { border-color: var(--gold-mid); }
@@ -188,7 +215,7 @@
     .feature-title { font-size: 15px; font-weight: 500; margin-bottom: 6px; }
     .feature-text { font-size: 13px; color: var(--muted); line-height: 1.6; }
 
-    /* ── PRICING ── */
+    /* PRICING */
     .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; max-width: 640px; }
     .pricing-card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 32px; }
     .pricing-card.featured { border-color: var(--gold); background: linear-gradient(135deg, #1a1400, #131313); position: relative; }
@@ -205,9 +232,9 @@
     .pricing-features li { font-size: 14px; color: var(--text); display: flex; align-items: center; gap: 10px; }
     .pricing-features li::before { content: '✓'; color: var(--gold); font-weight: 700; }
     .pricing-features li.muted { color: var(--muted) !important; }
-    .pricing-features li.muted::before { content: '–'; color: var(--border); }
+    .pricing-features li.muted::before { content: '-'; color: var(--border); }
 
-    /* ── LIVE BADGE ── */
+    /* LIVE BADGE */
     .live-badge {
       display: inline-flex; align-items: center; gap: 8px;
       background: #0a1a0a; border: 1px solid #2a4a2a;
@@ -225,7 +252,7 @@
       50% { opacity: 0.5; transform: scale(0.8); }
     }
 
-    /* ── CTA SECTION ── */
+    /* CTA SECTION */
     .cta-section {
       background: linear-gradient(135deg, #111000, #0a0a0a);
       border: 1px solid var(--gold-mid); border-radius: 24px;
@@ -242,7 +269,145 @@
     .cta-actions { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
     .cta-note { font-size: 12px; color: var(--muted); margin-top: 16px; }
 
-    /* ── FOOTER ── */
+    /* INVITE SECTION */
+    .invite-section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 48px 40px;
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .invite-section h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(22px, 4vw, 32px);
+      margin-bottom: 12px; line-height: 1.3;
+    }
+    .invite-section h3 em { font-style: italic; color: var(--gold); }
+    .invite-section p {
+      font-size: 15px; color: var(--muted);
+      margin-bottom: 28px; line-height: 1.7;
+    }
+    .invite-gender-buttons {
+      display: flex; gap: 10px; justify-content: center; margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .gender-btn {
+      background: var(--gold-soft);
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      padding: 10px 22px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px; color: var(--muted);
+      cursor: pointer; transition: all 0.2s;
+    }
+    .gender-btn:hover { border-color: var(--gold-mid); color: var(--text); }
+    .gender-btn.active {
+      background: var(--gold-soft);
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+    .invite-input-row {
+      display: flex; gap: 10px; margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+    .invite-input {
+      flex: 1; min-width: 200px;
+      background: #0d0d0d;
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      padding: 13px 20px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px; color: var(--text);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .invite-input:focus { border-color: var(--gold-mid); }
+    .invite-input::placeholder { color: var(--muted); }
+    .invite-send-btn {
+      background: var(--gold); color: #0a0a0a;
+      border: none; border-radius: 30px;
+      padding: 13px 24px;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500; font-size: 14px;
+      cursor: pointer; white-space: nowrap;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .invite-send-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+    .invite-send-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+    .invite-privacy {
+      font-size: 11px; color: var(--muted);
+      letter-spacing: 0.3px; line-height: 1.6;
+    }
+    .invite-privacy strong { color: var(--text); }
+    .invite-feedback {
+      display: none;
+      margin-top: 16px;
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-size: 14px;
+    }
+    .invite-feedback.success {
+      display: block;
+      background: #0a1a0a; border: 1px solid #2a4a2a;
+      color: #7ee8a2;
+    }
+    .invite-feedback.error {
+      display: block;
+      background: #1a0a0a; border: 1px solid #4a2a2a;
+      color: #e8a07e;
+    }
+
+    /* IMPACT SECTION */
+    .impact-section {
+      background: linear-gradient(135deg, #0d0b07, #0a0a0a);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 48px 40px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .impact-header {
+      text-align: center; margin-bottom: 40px;
+    }
+    .impact-header p.section-tag { margin-bottom: 12px; }
+    .impact-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(24px, 4vw, 38px);
+      line-height: 1.2;
+    }
+    .impact-header h2 em { color: var(--gold); font-style: italic; }
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+    .impact-item {
+      display: flex; gap: 16px; align-items: flex-start;
+    }
+    .impact-icon {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--gold-soft); border: 1px solid var(--gold-mid);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; flex-shrink: 0;
+    }
+    .impact-text-title {
+      font-size: 15px; font-weight: 500; margin-bottom: 4px; color: var(--text);
+    }
+    .impact-text-body {
+      font-size: 13px; color: var(--muted); line-height: 1.6;
+    }
+    .impact-divider {
+      border: none; border-top: 1px solid var(--border);
+      margin: 32px 0;
+    }
+    .impact-bottom {
+      text-align: center; font-size: 13px; color: var(--muted); line-height: 1.8;
+    }
+    .impact-bottom strong { color: var(--gold); }
+
+    /* FOOTER */
     footer {
       border-top: 1px solid var(--border);
       padding: 32px 40px;
@@ -253,19 +418,30 @@
     .footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
     .footer-links a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
     .footer-links a:hover { color: var(--gold); }
+    .footer-instagram {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 13px; color: var(--muted); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-instagram:hover { color: var(--gold); }
+    .footer-instagram svg { width: 14px; height: 14px; fill: currentColor; }
 
-    /* ── ANIMATIONS ── */
+    /* ANIMATIONS */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(24px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* ── RESPONSIVE ── */
+    /* RESPONSIVE */
     @media (max-width: 600px) {
       nav { padding: 16px 20px; }
+      .nav-instagram span { display: none; }
       .cta-section { padding: 40px 20px; }
+      .invite-section { padding: 32px 20px; }
+      .impact-section { padding: 32px 20px; }
       footer { flex-direction: column; align-items: flex-start; }
       .steps::before { display: none; }
+      .values-banner { gap: 20px; padding: 20px 24px; }
     }
   </style>
 </head>
@@ -274,7 +450,15 @@
 <!-- NAV -->
 <nav>
   <a href="/" class="nav-logo">GoddessAlert</a>
-  <a href="https://app.goddessalert.com" class="nav-cta">Start gratis →</a>
+  <div class="nav-right">
+    <a href="https://www.instagram.com/goddessalert_" target="_blank" rel="noreferrer" class="nav-instagram">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+      </svg>
+      <span>@goddessalert</span>
+    </a>
+    <a href="https://app.goddessalert.com" class="nav-cta">Start gratis →</a>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -287,10 +471,10 @@
   <p class="hero-tag">Voor mannen die écht aanwezig willen zijn</p>
   <h1 class="hero-title">Wees de man<br /><em>die zij verdient</em></h1>
   <p class="hero-sub">
-    Je bent niet onoplettend. Je vergeet het gewoon soms. GoddessAlert helpt je de kleine dingen te onthouden — vóórdat het te laat is.
+    Je bent niet onoplettend. Je vergeet het gewoon soms. GoddessAlert helpt je de kleine dingen te onthouden - vóórdat het te laat is.
   </p>
   <div class="hero-actions">
-    <a href="https://app.goddessalert.com" class="btn-primary">Start gratis — 7 dagen proberen</a>
+    <a href="https://app.goddessalert.com" class="btn-primary">Start gratis - 7 dagen proberen</a>
     <a href="#hoe-het-werkt" class="btn-ghost">Hoe werkt het?</a>
   </div>
   <div class="hero-proof">
@@ -299,12 +483,28 @@
   </div>
 </div>
 
+<!-- MERKWAARDEN BANNER -->
+<div class="values-banner">
+  <div class="value-item">
+    <div class="value-dot"></div>
+    Bewuste tegenhanger van de manosphere
+  </div>
+  <div class="value-item">
+    <div class="value-dot"></div>
+    10% van de winst naar vrouwenpositie
+  </div>
+  <div class="value-item">
+    <div class="value-dot"></div>
+    10% van de winst naar vergroening
+  </div>
+</div>
+
 <!-- QUOTE -->
 <div class="quote-section">
   <p class="quote-text">
     "Ze wil geen perfecte man.<br />Ze wil een man die <em>probeert</em>."
   </p>
-  <p class="quote-attr">— Het idee achter GoddessAlert</p>
+  <p class="quote-attr">- Het idee achter GoddessAlert</p>
 </div>
 
 <!-- PROBLEM -->
@@ -335,13 +535,13 @@
 <section id="hoe-het-werkt">
   <p class="section-tag">Hoe het werkt</p>
   <h2 class="section-title"><em>Simpel.</em> Effectief.<br />Zij weet van niets.</h2>
-  <p class="section-sub">GoddessAlert werkt stil op de achtergrond — als een goede vriend die je op tijd een seintje geeft.</p>
+  <p class="section-sub">GoddessAlert werkt stil op de achtergrond - als een goede vriend die je op tijd een seintje geeft.</p>
   <div class="steps">
     <div class="step">
       <div class="step-num">1</div>
       <div class="step-content">
         <div class="step-title">Maak een account aan</div>
-        <div class="step-text">Eén e-mailadres is genoeg. Geen wachtwoord nodig — je logt in via een magische link. Duurt 30 seconden.</div>
+        <div class="step-text">Eén e-mailadres is genoeg. Geen wachtwoord nodig - je logt in via een magische link. Duurt 30 seconden.</div>
       </div>
     </div>
     <div class="step">
@@ -355,7 +555,7 @@
       <div class="step-num">3</div>
       <div class="step-content">
         <div class="step-title">Ontvang vroege waarschuwingen</div>
-        <div class="step-text">GoddessAlert stuurt je een herinnering ruim vóór belangrijke momenten — zodat jij tijd hebt om iets moois te regelen.</div>
+        <div class="step-text">GoddessAlert stuurt je een herinnering ruim vóór belangrijke momenten - zodat jij tijd hebt om iets moois te regelen.</div>
       </div>
     </div>
     <div class="step">
@@ -376,17 +576,17 @@
     <div class="feature-card">
       <div class="feature-emoji">⏰</div>
       <div class="feature-title">Slimme herinneringen</div>
-      <div class="feature-text">Verjaardagen, jubilea en eigen momenten — altijd op tijd gewaarschuwd, via e-mail.</div>
+      <div class="feature-text">Verjaardagen, jubilea en eigen momenten - altijd op tijd gewaarschuwd, via e-mail.</div>
     </div>
     <div class="feature-card">
       <div class="feature-emoji">✦</div>
       <div class="feature-title">Dagelijkse aandachtstip</div>
-      <div class="feature-text">Eén concrete tip per dag. Klein, haalbaar, effectief. Jij beoordeelt of hij nuttig was.</div>
+      <div class="feature-text">Eén concrete tip per dag. Klein, haalbaar, effectief. Gepersonaliseerd op jouw zwakste punten.</div>
     </div>
     <div class="feature-card">
       <div class="feature-emoji">💪</div>
       <div class="feature-title">Relatiegezondheidscore</div>
-      <div class="feature-text">Jouw persoonlijke score op basis van wat je doet — niet wat je belooft.</div>
+      <div class="feature-text">Jouw persoonlijke score op basis van wat je doet - niet wat je belooft.</div>
     </div>
     <div class="feature-card">
       <div class="feature-emoji">🔥</div>
@@ -396,12 +596,49 @@
     <div class="feature-card">
       <div class="feature-emoji">📋</div>
       <div class="feature-title">Persoonlijke to-do's</div>
-      <div class="feature-text">Vuilnis, klusjes, beloftes — stel datum en tijd in, nooit meer vergeten.</div>
+      <div class="feature-text">Vuilnis, klusjes, beloftes - stel datum en tijd in, nooit meer vergeten.</div>
     </div>
     <div class="feature-card">
       <div class="feature-emoji">🔒</div>
       <div class="feature-title">Volledig privé</div>
       <div class="feature-text">Alleen voor jou. Zij ziet niets, weet niets. Jij blijft de held.</div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT SECTIE - MERKWAARDEN -->
+<section style="padding: 60px 24px;">
+  <div class="impact-section">
+    <div class="impact-header">
+      <p class="section-tag">Meer dan een app</p>
+      <h2>Aandacht geven is geen zwakte.<br /><em>Het is de echte kracht.</em></h2>
+    </div>
+    <div class="impact-grid">
+      <div class="impact-item">
+        <div class="impact-icon">⚖️</div>
+        <div>
+          <div class="impact-text-title">Bewuste tegenhanger</div>
+          <div class="impact-text-body">GoddessAlert staat tegenover de manosphere. Niet dominantie, niet princess treatment - maar gelijkwaardigheid als kern. Aandacht en respect zijn geen concessie. Ze zijn de standaard.</div>
+        </div>
+      </div>
+      <div class="impact-item">
+        <div class="impact-icon">♀️</div>
+        <div>
+          <div class="impact-text-title">10% naar vrouwenpositie</div>
+          <div class="impact-text-body">Tien procent van onze winst gaat naar organisaties die werken aan de positie van vrouwen. Vastgelegd vanaf dag één - ook voor winstgevendheid. Niet als marketingtruc, maar als standpunt.</div>
+        </div>
+      </div>
+      <div class="impact-item">
+        <div class="impact-icon">🌱</div>
+        <div>
+          <div class="impact-text-title">10% naar vergroening</div>
+          <div class="impact-text-body">Nog eens tien procent gaat naar duurzaamheid en vergroening. Een goede relatie verdient een goede wereld om in te groeien.</div>
+        </div>
+      </div>
+    </div>
+    <hr class="impact-divider" />
+    <div class="impact-bottom">
+      GoddessAlert is gebouwd door mensen die geloven dat mannen <strong>beter kunnen</strong> - niet omdat ze slecht zijn, maar omdat aandacht een vaardigheid is die je kunt leren.
     </div>
   </div>
 </section>
@@ -415,7 +652,7 @@
     <div class="pricing-card">
       <div class="pricing-plan">Maandelijks</div>
       <div class="pricing-price">€4,99</div>
-      <div class="pricing-period">per maand · opzegbaar wanneer je wilt</div>
+      <div class="pricing-period">per maand - opzegbaar wanneer je wilt</div>
       <ul class="pricing-features">
         <li>Onbeperkte herinneringen</li>
         <li>Dagelijkse aandachtstips</li>
@@ -426,10 +663,10 @@
       <a href="https://app.goddessalert.com" class="btn-primary" style="display:block; text-align:center;">Start gratis proefperiode</a>
     </div>
     <div class="pricing-card featured">
-      <div class="pricing-badge">Beste waarde — bespaar 50%</div>
+      <div class="pricing-badge">Beste waarde - bespaar 50%</div>
       <div class="pricing-plan">Jaarlijks</div>
       <div class="pricing-price">€29,99</div>
-      <div class="pricing-period">per jaar · komt neer op €2,50/maand</div>
+      <div class="pricing-period">per jaar - komt neer op €2,50/maand</div>
       <ul class="pricing-features">
         <li>Onbeperkte herinneringen</li>
         <li>Dagelijkse aandachtstips</li>
@@ -448,9 +685,41 @@
     <h2>Klaar om te beginnen?<br /><em>Zij merkt het verschil.</em></h2>
     <p>Maak vandaag nog een account aan. Het duurt 90 seconden en de eerste 7 dagen zijn volledig gratis.</p>
     <div class="cta-actions">
-      <a href="https://app.goddessalert.com" class="btn-primary">Start gratis — geen creditcard nodig</a>
+      <a href="https://app.goddessalert.com" class="btn-primary">Start gratis - geen creditcard nodig</a>
     </div>
     <p class="cta-note">Na 7 dagen €4,99/maand of €29,99/jaar. Opzegbaar wanneer je wilt.</p>
+  </div>
+</section>
+
+<!-- ANONIEME INVITE -->
+<section style="padding: 40px 24px 100px;">
+  <div class="invite-section">
+    <h3>Ken je iemand die dit<br /><em>nodig heeft?</em></h3>
+    <p>Stuur hem anoniem een berichtje. Hij weet niet van wie het komt. Jij weet dat je het geprobeerd hebt.</p>
+
+    <div class="invite-gender-buttons">
+      <button class="gender-btn" data-gender="man" onclick="selectGender('man')">Ik ben een man</button>
+      <button class="gender-btn" data-gender="vrouw" onclick="selectGender('vrouw')">Ik ben een vrouw</button>
+      <button class="gender-btn" data-gender="anoniem" onclick="selectGender('anoniem')">Anoniem blijven</button>
+    </div>
+
+    <div class="invite-input-row">
+      <input
+        type="email"
+        id="invite-email"
+        class="invite-input"
+        placeholder="Zijn e-mailadres"
+      />
+      <button class="invite-send-btn" id="invite-btn" onclick="sendInvite()" disabled>
+        Verstuur →
+      </button>
+    </div>
+
+    <p class="invite-privacy">
+      <strong>We slaan dit adres niet op.</strong> We versturen één e-mail en vergeten het daarna. Geen follow-up, geen opslag, geen reminders.
+    </p>
+
+    <div class="invite-feedback" id="invite-feedback"></div>
   </div>
 </section>
 
@@ -461,17 +730,78 @@
     <a href="/terms.html">Algemene voorwaarden</a>
     <a href="/privacy.html">Privacyverklaring</a>
     <a href="mailto:hello@goddessalert.com">Contact</a>
+    <a href="https://www.instagram.com/goddessalert_" target="_blank" rel="noreferrer" class="footer-instagram">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+      </svg>
+      Instagram
+    </a>
   </div>
   <div style="font-size:12px; color:var(--muted);">© 2026 GoddessAlert. Alle rechten voorbehouden.</div>
 </footer>
 
 <script>
+  // Smooth scroll
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
       const target = document.querySelector(a.getAttribute('href'));
       if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
     });
   });
+
+  // Invite functie
+  let selectedGender = null;
+
+  function selectGender(gender) {
+    selectedGender = gender;
+    document.querySelectorAll('.gender-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.gender === gender);
+    });
+    updateSendButton();
+  }
+
+  document.getElementById('invite-email').addEventListener('input', updateSendButton);
+
+  function updateSendButton() {
+    const email = document.getElementById('invite-email').value;
+    const valid = selectedGender && email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    document.getElementById('invite-btn').disabled = !valid;
+  }
+
+  async function sendInvite() {
+    const email = document.getElementById('invite-email').value;
+    const btn = document.getElementById('invite-btn');
+    const feedback = document.getElementById('invite-feedback');
+
+    btn.disabled = true;
+    btn.textContent = 'Versturen...';
+    feedback.className = 'invite-feedback';
+    feedback.style.display = 'none';
+
+    try {
+      const res = await fetch('https://bcsyjkbhimsvbzufczyu.supabase.co/functions/v1/send-invite', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, gender: selectedGender })
+      });
+
+      if (res.ok) {
+        feedback.textContent = 'Verstuurd. Hij krijgt zo een berichtje - zonder jouw naam.';
+        feedback.className = 'invite-feedback success';
+        document.getElementById('invite-email').value = '';
+        selectedGender = null;
+        document.querySelectorAll('.gender-btn').forEach(b => b.classList.remove('active'));
+      } else {
+        throw new Error('Mislukt');
+      }
+    } catch {
+      feedback.textContent = 'Er ging iets mis. Probeer het opnieuw of mail ons op hello@goddessalert.com.';
+      feedback.className = 'invite-feedback error';
+      btn.disabled = false;
+    }
+
+    btn.textContent = 'Verstuur →';
+  }
 </script>
 
 </body>
