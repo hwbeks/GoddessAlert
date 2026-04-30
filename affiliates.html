@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GoddessAlert — Partner Program</title>
+  <meta name="description" content="Partner with GoddessAlert. Help men show up better — earn while you do." />
+  <meta name="color-scheme" content="dark" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #0a0a0a;
+      --card:     #131313;
+      --border:   #252525;
+      --gold:     #d4a853;
+      --gold-soft:#d4a85318;
+      --gold-mid: #d4a85355;
+      --text:     #ede8de;
+      --muted:    #7a7060;
+    }
+
+    html { scroll-behavior: smooth; background: var(--bg); }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0; opacity: 0.4;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      padding: 20px 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      z-index: 100;
+      background: linear-gradient(to bottom, #0a0a0aee, transparent);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-style: italic; font-size: 22px;
+      color: var(--gold); letter-spacing: 1px;
+      text-decoration: none;
+    }
+    .nav-right { display: flex; align-items: center; gap: 20px; }
+    .nav-cta {
+      background: var(--gold); color: #0a0a0a;
+      border: none; border-radius: 30px;
+      padding: 10px 24px;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500; font-size: 14px;
+      cursor: pointer; text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.85; transform: translateY(-1px); }
+    .nav-back {
+      font-size: 13px; color: var(--muted); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--gold); }
+
+    /* HERO */
+    .hero {
+      min-height: 80vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      position: relative;
+    }
+    .hero-glow {
+      position: absolute;
+      width: 700px; height: 700px; border-radius: 50%;
+      background: radial-gradient(circle, #d4a85314 0%, transparent 70%);
+      top: 50%; left: 50%; transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+    .hero-tag {
+      font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 24px;
+      opacity: 0; animation: fadeUp 0.8s ease forwards 0.2s;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(42px, 8vw, 84px);
+      line-height: 1.1; color: var(--text); margin-bottom: 16px;
+      opacity: 0; animation: fadeUp 0.8s ease forwards 0.4s;
+    }
+    .hero-title em { font-style: italic; color: var(--gold); }
+    .hero-sub {
+      font-size: clamp(16px, 2.5vw, 20px); color: var(--muted);
+      max-width: 520px; margin: 0 auto 48px;
+      opacity: 0; animation: fadeUp 0.8s ease forwards 0.6s;
+    }
+    .hero-actions {
+      display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;
+      opacity: 0; animation: fadeUp 0.8s ease forwards 0.8s;
+    }
+
+    /* BUTTONS */
+    .btn-primary {
+      background: var(--gold); color: #0a0a0a;
+      border: none; border-radius: 40px;
+      padding: 16px 36px;
+      font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 16px;
+      cursor: pointer; text-decoration: none;
+      transition: transform 0.2s, opacity 0.2s; display: inline-block;
+    }
+    .btn-primary:hover { transform: translateY(-2px); opacity: 0.9; }
+    .btn-ghost {
+      background: transparent; color: var(--muted);
+      border: 1px solid var(--border); border-radius: 40px;
+      padding: 16px 36px;
+      font-family: 'DM Sans', sans-serif; font-size: 16px;
+      cursor: pointer; text-decoration: none;
+      transition: border-color 0.2s, color 0.2s; display: inline-block;
+    }
+    .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* SECTIONS */
+    section {
+      position: relative; z-index: 1;
+      padding: 100px 24px; max-width: 1000px; margin: 0 auto;
+    }
+    .section-tag { font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(28px, 5vw, 48px); line-height: 1.2; margin-bottom: 20px; }
+    .section-title em { font-style: italic; color: var(--gold); }
+    .section-sub { font-size: 17px; color: var(--muted); max-width: 540px; margin-bottom: 48px; }
+
+    /* HOW IT WORKS */
+    .steps { display: flex; flex-direction: column; gap: 0; position: relative; }
+    .steps::before {
+      content: ''; position: absolute; left: 27px; top: 0; bottom: 0;
+      width: 1px; background: linear-gradient(to bottom, var(--gold), transparent);
+    }
+    .step { display: flex; gap: 24px; align-items: flex-start; padding: 32px 0; border-bottom: 1px solid var(--border); }
+    .step:last-child { border-bottom: none; }
+    .step-num {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: var(--gold-soft); border: 1px solid var(--gold-mid);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif; font-size: 20px; color: var(--gold); flex-shrink: 0;
+    }
+    .step-content { padding-top: 8px; }
+    .step-title { font-size: 18px; font-weight: 500; margin-bottom: 6px; }
+    .step-text { font-size: 15px; color: var(--muted); }
+
+    /* EARNINGS */
+    .earnings-box {
+      background: linear-gradient(135deg, #1a1400, #131313);
+      border: 1px solid var(--gold-mid);
+      border-radius: 24px;
+      padding: 48px 40px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .earnings-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(24px, 4vw, 36px);
+      margin-bottom: 8px; line-height: 1.2;
+      text-align: center;
+    }
+    .earnings-title em { font-style: italic; color: var(--gold); }
+    .earnings-sub {
+      font-size: 15px; color: var(--muted);
+      text-align: center; margin-bottom: 40px;
+    }
+    .earnings-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px; margin-bottom: 32px;
+    }
+    .earnings-item {
+      background: var(--gold-soft);
+      border: 1px solid var(--gold-mid);
+      border-radius: 16px; padding: 24px;
+      text-align: center;
+    }
+    .earnings-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 40px; color: var(--gold); line-height: 1;
+      margin-bottom: 6px;
+    }
+    .earnings-label { font-size: 13px; color: var(--muted); line-height: 1.5; }
+    .earnings-example {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px; padding: 20px 24px;
+    }
+    .earnings-example-title {
+      font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 12px;
+    }
+    .earnings-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 8px 0; border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+    .earnings-row:last-child { border-bottom: none; }
+    .earnings-row-label { color: var(--muted); }
+    .earnings-row-value { color: var(--gold); font-weight: 500; }
+
+    /* FOR WHOM */
+    .for-whom-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .for-whom-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 20px; padding: 28px;
+      transition: border-color 0.2s;
+    }
+    .for-whom-card:hover { border-color: var(--gold-mid); }
+    .for-whom-icon { font-size: 32px; margin-bottom: 14px; }
+    .for-whom-title { font-size: 17px; font-weight: 500; margin-bottom: 8px; }
+    .for-whom-text { font-size: 14px; color: var(--muted); line-height: 1.7; }
+
+    /* MERKWAARDEN BANNER */
+    .values-banner {
+      background: linear-gradient(135deg, #0f0d08, #131310);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 28px 40px;
+      display: flex; align-items: center; justify-content: center;
+      gap: 48px; flex-wrap: wrap;
+      position: relative; z-index: 1;
+    }
+    .value-item {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 13px; color: var(--muted);
+    }
+    .value-dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--gold); flex-shrink: 0;
+    }
+
+    /* CTA SECTION */
+    .cta-section {
+      background: linear-gradient(135deg, #111000, #0a0a0a);
+      border: 1px solid var(--gold-mid); border-radius: 24px;
+      padding: 64px 40px; text-align: center;
+      max-width: 640px; margin: 0 auto;
+    }
+    .cta-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 5vw, 42px);
+      margin-bottom: 16px; line-height: 1.2;
+    }
+    .cta-section h2 em { font-style: italic; color: var(--gold); }
+    .cta-section p { font-size: 16px; color: var(--muted); margin-bottom: 36px; line-height: 1.7; }
+    .cta-note { font-size: 12px; color: var(--muted); margin-top: 16px; }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .footer-logo { font-family: 'Playfair Display', serif; font-style: italic; color: var(--gold); font-size: 20px; }
+    .footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-links a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gold); }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      nav { padding: 16px 20px; }
+      .cta-section { padding: 40px 20px; }
+      .earnings-box { padding: 32px 20px; }
+      footer { flex-direction: column; align-items: flex-start; }
+      .steps::before { display: none; }
+      .values-banner { gap: 20px; padding: 20px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">GoddessAlert</a>
+  <div class="nav-right">
+    <a href="/" class="nav-back">← Back to home</a>
+    <a href="mailto:hello@goddessalert.com" class="nav-cta">Get in touch →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-glow"></div>
+  <p class="hero-tag">Partner Program</p>
+  <h1 class="hero-title">Help men show up.<br /><em>Earn while you do.</em></h1>
+  <p class="hero-sub">
+    Partner with GoddessAlert and give your audience something genuinely useful — while earning a recurring commission for every paying user you bring in.
+  </p>
+  <div class="hero-actions">
+    <a href="mailto:hello@goddessalert.com" class="btn-primary">Apply to partner →</a>
+    <a href="#how-it-works" class="btn-ghost">How does it work?</a>
+  </div>
+</div>
+
+<!-- MERKWAARDEN BANNER -->
+<div class="values-banner">
+  <div class="value-item">
+    <div class="value-dot"></div>
+    25% discount for your audience
+  </div>
+  <div class="value-item">
+    <div class="value-dot"></div>
+    25% recurring commission for 12 months
+  </div>
+  <div class="value-item">
+    <div class="value-dot"></div>
+    Your own personal code
+  </div>
+</div>
+
+<!-- EARNINGS -->
+<section style="padding: 80px 24px;">
+  <div class="earnings-box">
+    <h2 class="earnings-title">What you <em>earn</em></h2>
+    <p class="earnings-sub">GoddessAlert Premium costs €4.99/month. Here's what the numbers look like.</p>
+    <div class="earnings-grid">
+      <div class="earnings-item">
+        <div class="earnings-number">25%</div>
+        <div class="earnings-label">Discount for your audience on their first month</div>
+      </div>
+      <div class="earnings-item">
+        <div class="earnings-number">25%</div>
+        <div class="earnings-label">Commission per paying user, every month</div>
+      </div>
+      <div class="earnings-item">
+        <div class="earnings-number">12</div>
+        <div class="earnings-label">Months of recurring commission per user</div>
+      </div>
+    </div>
+    <div class="earnings-example">
+      <div class="earnings-example-title">Example earnings</div>
+      <div class="earnings-row">
+        <span class="earnings-row-label">Your audience pays</span>
+        <span class="earnings-row-value">€3.74 first month</span>
+      </div>
+      <div class="earnings-row">
+        <span class="earnings-row-label">Your commission per user</span>
+        <span class="earnings-row-value">€1.25/month</span>
+      </div>
+      <div class="earnings-row">
+        <span class="earnings-row-label">10 paying users</span>
+        <span class="earnings-row-value">€12.50/month</span>
+      </div>
+      <div class="earnings-row">
+        <span class="earnings-row-label">10 users over 12 months</span>
+        <span class="earnings-row-value">€150 total</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how-it-works">
+  <p class="section-tag">How it works</p>
+  <h2 class="section-title">Simple to set up.<br /><em>Simple to share.</em></h2>
+  <p class="section-sub">No contracts, no minimums, no upfront costs. Just a code and a genuine product worth sharing.</p>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <div class="step-title">Get in touch</div>
+        <div class="step-text">Send an email to hello@goddessalert.com with your name, platform, and a link to your content. We'll get back to you within 24 hours.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <div class="step-title">Get your personal code</div>
+        <div class="step-text">We create a code tied to your name — for example SARAH25. Your audience uses it at checkout to get 25% off their first month.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <div class="step-title">Share it your way</div>
+        <div class="step-text">A post, a story, a mention in your newsletter — whatever feels natural to you. There's no script and no obligation on how or when you share.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <div class="step-title">Earn recurring commission</div>
+        <div class="step-text">Every time someone signs up using your code and pays, you earn 25% of their monthly payment — for up to 12 months. We pay out monthly.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOR WHOM -->
+<section>
+  <p class="section-tag">Who is this for</p>
+  <h2 class="section-title">If your audience cares about<br /><em>healthy relationships</em>.</h2>
+  <p class="section-sub">GoddessAlert works best when it comes from someone your audience already trusts.</p>
+  <div class="for-whom-grid">
+    <div class="for-whom-card">
+      <div class="for-whom-icon">🧠</div>
+      <div class="for-whom-title">Therapists & coaches</div>
+      <div class="for-whom-text">If you work with couples or individuals on relationships, GoddessAlert reinforces what you already teach — small habits, consistent attention.</div>
+    </div>
+    <div class="for-whom-card">
+      <div class="for-whom-icon">📱</div>
+      <div class="for-whom-title">Content creators</div>
+      <div class="for-whom-text">Instagram, TikTok, YouTube — if your content is about love, relationships, or personal growth, your audience will find this meaningful.</div>
+    </div>
+    <div class="for-whom-card">
+      <div class="for-whom-icon">🎙️</div>
+      <div class="for-whom-title">Podcast hosts</div>
+      <div class="for-whom-text">If you talk about relationships, wellbeing, or conscious living, GoddessAlert fits naturally as a sponsor or recommendation.</div>
+    </div>
+    <div class="for-whom-card">
+      <div class="for-whom-icon">✍️</div>
+      <div class="for-whom-title">Newsletter writers</div>
+      <div class="for-whom-text">A single mention in the right newsletter can convert well. If your readers care about showing up better, this is for them.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT THE APP -->
+<section style="padding: 60px 24px;">
+  <div style="background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 48px 40px; max-width: 800px; margin: 0 auto;">
+    <p class="section-tag" style="margin-bottom: 16px;">About GoddessAlert</p>
+    <h2 class="section-title" style="margin-bottom: 20px;">What you're <em>recommending</em></h2>
+    <p style="font-size: 15px; color: var(--muted); line-height: 1.8; margin-bottom: 24px;">
+      GoddessAlert is a relationship app for men. It gives them one small, concrete tip every day — personalised to their weakest areas — along with smart reminders for important moments and a relationship health score based on what they actually do, not what they promise.
+    </p>
+    <p style="font-size: 15px; color: var(--muted); line-height: 1.8; margin-bottom: 24px;">
+      It's a conscious alternative to the manosphere. The foundation is attention and respect — not dominance, not princess treatment. Ten percent of profits go to women's equality organisations. Another ten percent to sustainability. Both committed from day one.
+    </p>
+    <p style="font-size: 15px; color: var(--text); line-height: 1.8;">
+      The tip is always a starting point. The user brings the judgment — he knows her, the context, and what she needs. GoddessAlert just helps him remember to show up.
+    </p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="padding: 80px 24px 100px;">
+  <div class="cta-section">
+    <h2>Ready to partner?<br /><em>Let's talk.</em></h2>
+    <p>Send us your name, platform, and a link to your content. We'll set up your personal code within 24 hours — no paperwork, no obligations.</p>
+    <a href="mailto:hello@goddessalert.com" class="btn-primary">hello@goddessalert.com →</a>
+    <p class="cta-note">No minimum audience size required. We care about fit, not follower counts.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">GoddessAlert</div>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/terms.html">Terms of use</a>
+    <a href="/privacy.html">Privacy policy</a>
+    <a href="mailto:hello@goddessalert.com">Contact</a>
+  </div>
+  <div style="font-size:12px; color:var(--muted);">© 2026 GoddessAlert. All rights reserved.</div>
+</footer>
+
+</body>
+</html>
